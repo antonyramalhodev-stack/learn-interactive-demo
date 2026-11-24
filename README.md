@@ -2,6 +2,8 @@
 
 A demo of interactive learning content on GitHub Pages. The site uses [Fumadocs](https://fumadocs.dev) for the docs framework and [Primer](https://primer.style), GitHub's open-source design system, for the look and the components.
 
+**Live site:** https://antonyramalhodev-stack.github.io/learn-interactive-demo/
+
 > [!NOTE]
 > This is a prototype with sample content. It is not an official GitHub site.
 
