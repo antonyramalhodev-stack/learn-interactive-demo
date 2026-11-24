@@ -7,28 +7,9 @@ A demo of interactive learning content on GitHub Pages. The site uses [Fumadocs]
 
 ## What's inside
 
-**Built-in elements (Fumadocs)**
+A focused set of lesson elements. Each one runs in the browser.
 
-- Tabs, code tabs, and package manager tabs
-- Code blocks with titles, highlights, and a copy button
-- Steps, callouts, and accordions
-- Type tables and file trees
-- Search that runs in the browser
-- Light and dark mode
-
-**Learning elements (Primer React)**
-
-| Component | What it does | Source |
-| --- | --- | --- |
-| `Quiz` | A single-choice question with feedback for each answer | `src/components/learn/quiz.tsx` |
-| `CommandExercise` | The learner types a command and the page checks it | `src/components/learn/command-exercise.tsx` |
-| `Flashcards` | A deck of terms that flip to show the answer | `src/components/learn/flashcards.tsx` |
-| `Checklist` | A checklist with a progress bar that the browser saves | `src/components/learn/checklist.tsx` |
-| `Mermaid` | A diagram that uses the Primer colors | `src/components/learn/mermaid.tsx` |
-| `LessonMeta` | Chips for time, level, and prerequisites | `src/components/learn/lesson-meta.tsx` |
-| `PrimerShowcase` | A gallery of live Primer components | `src/components/learn/primer-showcase.tsx` |
-
-**Animated elements**
+**Explain**
 
 Each one plays when the reader scrolls to it and shows its end state when the reader's system asks for reduced motion.
 
@@ -38,10 +19,26 @@ Each one plays when the reader scrolls to it and shows its end state when the re
 | `GitGraph` | A commit graph that draws itself one step at a time | `src/components/motion/git-graph.tsx` |
 | `CodeTour` | A highlight that walks through a code sample | `src/components/motion/code-tour.tsx` |
 | `WorkflowRun` | Jobs and steps that run in order | `src/components/motion/workflow-run.tsx` |
-| `ThemePlayground` | A live preview in seven Primer color themes | `src/components/motion/theme-playground.tsx` |
-| `LayerStack` | A stack of layers the reader can explore | `src/components/motion/layer-stack.tsx` |
+| `Mermaid` | A diagram from text that uses the Primer colors | `src/components/learn/mermaid.tsx` |
 
-The home page (`src/components/home/home.tsx`) combines them with a typed MDX preview, looping mini demos, and a status bar that follows the scroll position.
+**Practice**
+
+| Component | What it does | Source |
+| --- | --- | --- |
+| `Quiz` | A single-choice question with feedback for each answer | `src/components/learn/quiz.tsx` |
+| `CommandExercise` | The learner types a command and the page checks it | `src/components/learn/command-exercise.tsx` |
+| `Flashcards` | A deck of terms that flip to show the answer | `src/components/learn/flashcards.tsx` |
+| `Checklist` | A checklist with a progress bar that the browser saves | `src/components/learn/checklist.tsx` |
+| `LessonMeta` | Chips for time, level, and prerequisites | `src/components/learn/lesson-meta.tsx` |
+
+**Page basics (Fumadocs)**
+
+Tabs, code tabs, code blocks with titles and highlights, steps, callouts, accordions, a file tree, search, and light and dark mode.
+
+## Where the elements run
+
+- **GitHub Pages.** Every element runs as it is.
+- **Microsoft Learn modules.** A module page takes Markdown, not custom components. Use the module's own knowledge check, alerts, and checklist, and add the animated elements as images or video. The page `content/docs/microsoft-learn.mdx` maps each element and marks what to confirm with the team that owns your Learn repository.
 
 ## Run it on your computer
 
@@ -84,7 +81,7 @@ GitHub Pages is available for public repositories on GitHub Free. A private repo
 
 - `src/app/global.css` imports the Primer design tokens and maps the Fumadocs color variables to them.
 - `src/components/provider.tsx` sets `data-color-mode` on the page, so the Primer colors follow the light and dark switch.
-- The learning widgets use `@primer/react` components and `@primer/octicons-react` icons.
+- The elements use `@primer/react` components and `@primer/octicons-react` icons.
 
 ## Limits of a static site
 

@@ -40,16 +40,3 @@ export function useInView<T extends Element>(threshold = 0.3): [RefObject<T | nu
 
   return [ref, inView];
 }
-
-/** Counts 0, 1, 2 and so on while `active`, then starts again. Small looping demos use it. */
-export function useLoopStep(count: number, delay: number, active: boolean): number {
-  const [step, setStep] = useState(0);
-
-  useEffect(() => {
-    if (!active) return;
-    const id = window.setInterval(() => setStep((current) => (current + 1) % count), delay);
-    return () => window.clearInterval(id);
-  }, [active, count, delay]);
-
-  return step;
-}

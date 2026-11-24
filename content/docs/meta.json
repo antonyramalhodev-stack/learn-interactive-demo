@@ -3,13 +3,15 @@
   "pages": [
     "index",
     "how-it-works",
+    "microsoft-learn",
+    "branding",
     "---Sample lesson---",
     "...lesson",
-    "---Animated elements---",
+    "---Explain---",
     "...animated",
-    "---Learning elements---",
+    "---Practice---",
     "...learning",
-    "---Built-in elements---",
+    "---Page basics---",
     "...built-in"
   ]
 }

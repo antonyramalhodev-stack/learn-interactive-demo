@@ -4,4 +4,3 @@ export { Flashcards } from './flashcards';
 export { CommandExercise } from './command-exercise';
 export { LessonMeta } from './lesson-meta';
 export { Mermaid } from './mermaid';
-export { PrimerShowcase } from './primer-showcase';

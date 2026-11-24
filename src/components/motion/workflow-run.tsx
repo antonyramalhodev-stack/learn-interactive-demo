@@ -25,14 +25,13 @@ export interface WorkflowRunProps {
   jobs: WorkflowJob[];
   /** The line that appears when every job is done. */
   result: string;
-  onStatus?: (text: string) => void;
 }
 
 /**
  * Plays back a workflow run: each job starts, ticks off its steps, and hands over to the next job.
  * It is an animation of the order of events. It does not read a real run.
  */
-export function WorkflowRun({ title = 'Workflow run', trigger, jobs, result, onStatus }: WorkflowRunProps) {
+export function WorkflowRun({ title = 'Workflow run', trigger, jobs, result }: WorkflowRunProps) {
   const [ref, inView] = useInView<HTMLDivElement>();
   const reduced = useReducedMotion();
   const total = jobs.reduce((sum, job) => sum + job.steps.length, 0);
@@ -60,15 +59,6 @@ export function WorkflowRun({ title = 'Workflow run', trigger, jobs, result, onS
       tick < start || tick < 0 ? 'queued' : doneSteps >= job.steps.length ? 'done' : 'running';
     return { job, doneSteps, state };
   });
-
-  const running = view.find((item) => item.state === 'running');
-
-  useEffect(() => {
-    if (!onStatus || !inView) return;
-    if (finished) onStatus(result.toLowerCase());
-    else if (running) onStatus(`running ${running.job.name}: ${running.job.steps[running.doneSteps]}`);
-    else onStatus(`$ ${trigger}`);
-  }, [finished, inView, onStatus, result, running, trigger]);
 
   return (
     <div ref={ref} className="learn-widget not-prose">

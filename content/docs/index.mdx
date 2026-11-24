@@ -1,32 +1,35 @@
 ---
 title: What this demo shows
-description: Interactive learning content on a static site, styled with GitHub's Primer design system.
+description: Lesson elements for GitHub Pages, styled with GitHub's Primer design system.
 ---
 
-This site shows the interactive elements you can add to a docs or learning site that runs on GitHub Pages. No server runs behind it. Every element works in the browser.
+This site holds a focused set of lesson elements. Every element runs in the browser, so GitHub Pages can host the site with no server.
 
 <Callout title="Demo site">
   The lesson text is sample content. This is a prototype built with open-source tools, not an
   official GitHub site.
 </Callout>
 
-## Start with the sample lesson
-
-The sample lesson uses most of the elements together, the way a real module would.
+## Start here
 
 <Cards>
   <Card title="Create a branch and open a pull request" href="/docs/lesson/first-pull-request">
-    A short lesson with an animated commit graph, a terminal, steps, tabs, an exercise, a quiz,
-    flashcards, and a progress checklist.
+    A sample lesson that uses the elements together.
+  </Card>
+  <Card title="Use the elements in Microsoft Learn" href="/docs/microsoft-learn">
+    What runs on GitHub Pages, and how each element maps to a Learn module.
   </Card>
   <Card title="How this site works" href="/docs/how-it-works">
     The project layout, how you add an element to a page, and how the site deploys.
   </Card>
+  <Card title="GitHub branding" href="/docs/branding">
+    How the site gets its look from Primer.
+  </Card>
 </Cards>
 
-## Animated elements
+## Explain
 
-These play when the reader scrolls to them. They respect the reduced motion setting of the reader's system.
+These elements play when the reader scrolls to them. They show their end state when the reader's system asks for reduced motion.
 
 <Cards>
   <Card title="Terminal" href="/docs/animated/terminal">
@@ -41,30 +44,9 @@ These play when the reader scrolls to them. They respect the reduced motion sett
   <Card title="Workflow run" href="/docs/animated/workflow-run">
     Jobs and steps that run in order.
   </Card>
-  <Card title="Themes and layers" href="/docs/animated/themes-and-layers">
-    A live theme switcher and a stack of layers.
-  </Card>
 </Cards>
 
-## Built-in elements
-
-These come with Fumadocs. You write them in MDX with no extra code.
-
-<Cards>
-  <Card title="Tabs and code blocks" href="/docs/built-in/tabs-and-code">
-    Tabs, code tabs, package manager tabs, line highlights, and a copy button.
-  </Card>
-  <Card title="Steps, callouts, and accordions" href="/docs/built-in/steps-and-callouts">
-    Numbered procedures, notes and warnings, and collapsible answers.
-  </Card>
-  <Card title="Reference elements" href="/docs/built-in/reference">
-    A type table, a file tree, and a diagram.
-  </Card>
-</Cards>
-
-## Learning elements
-
-These are custom components built with Primer React, GitHub's component library.
+## Practice
 
 <Cards>
   <Card title="Knowledge check" href="/docs/learning/knowledge-check">
@@ -79,8 +61,21 @@ These are custom components built with Primer React, GitHub's component library.
   <Card title="Progress checklist" href="/docs/learning/progress-checklist">
     A checklist with a progress bar that the browser saves.
   </Card>
-  <Card title="Primer components" href="/docs/learning/primer-components">
-    Buttons, labels, menus, and more from Primer React.
+</Cards>
+
+## Page basics
+
+These come with Fumadocs. You write them in MDX with no extra code.
+
+<Cards>
+  <Card title="Tabs and code blocks" href="/docs/built-in/tabs-and-code">
+    Tabs, code tabs, line highlights, and a copy button.
+  </Card>
+  <Card title="Steps, callouts, and accordions" href="/docs/built-in/steps-and-callouts">
+    Numbered procedures, notes and warnings, and collapsible answers.
+  </Card>
+  <Card title="File tree and diagram" href="/docs/built-in/reference">
+    A folder layout and a diagram from text.
   </Card>
 </Cards>
 
@@ -89,4 +84,3 @@ These are custom components built with Primer React, GitHub's component library.
 - **Search.** Select the search box or press <kbd>Ctrl</kbd>+<kbd>K</kbd>. On macOS, press <kbd>⌘</kbd>+<kbd>K</kbd>. Search runs in the browser from a static index.
 - **Light and dark mode.** Use the theme switch in the sidebar. The Primer colors change with it.
 - **Copy as Markdown.** Each page has a button that copies the page as Markdown.
-- **On this page.** The table of contents follows your scroll position.

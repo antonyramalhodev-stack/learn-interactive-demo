@@ -1,47 +1,7 @@
 ---
-title: Reference elements
-description: Document properties, show a folder layout, and draw a diagram.
+title: File tree and diagram
+description: Show a folder layout and draw a diagram from text.
 ---
-
-## Type table
-
-A type table documents the properties of a component, an API object, or a config file. Select a row to see the details.
-
-<TypeTable
-  type={{
-    question: {
-      description: 'The question the learner answers.',
-      type: 'string',
-      required: true,
-    },
-    options: {
-      description: 'The answers the learner picks from.',
-      type: 'QuizOption[]',
-      typeDescription: '{ label: string; correct?: boolean; feedback?: string }[]',
-      required: true,
-    },
-    shuffle: {
-      description: 'An example of a deprecated property. The table marks it for you.',
-      type: 'boolean',
-      default: 'false',
-      deprecated: true,
-    },
-  }}
-/>
-
-How you write it:
-
-```mdx
-<TypeTable
-  type={{
-    question: {
-      description: 'The question the learner answers.',
-      type: 'string',
-      required: true,
-    },
-  }}
-/>
-```
 
 ## File tree
 

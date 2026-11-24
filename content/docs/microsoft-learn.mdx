@@ -1,0 +1,78 @@
+---
+title: Use the elements in Microsoft Learn
+description: What runs on GitHub Pages, and how each element maps to a Microsoft Learn module.
+---
+
+The elements on this site are React components. They run on GitHub Pages as they are.
+
+A Microsoft Learn module is different. Learn builds a module page from Markdown and YAML. The [Learn Markdown reference](https://learn.microsoft.com/contribute/content/markdown-reference) says inline HTML isn't recommended, and that HTML outside a limited list causes build errors or warnings. So a module page can't run these components. Each element needs one of three routes: a Learn feature that does the same job, a recording, or a link to the lesson on GitHub Pages.
+
+<Callout title="Confirm before you rely on this page" type="warn">
+  This page covers what Microsoft's public contributor docs state. A cell that starts with
+  **Confirm** needs a check with the team that owns your Learn repository.
+</Callout>
+
+## Element map
+
+| Element | GitHub Pages | Microsoft Learn module |
+| --- | --- | --- |
+| Knowledge check (`Quiz`) | Runs as it is | Use the module's own knowledge check unit |
+| Callouts | Run as they are | Use Learn alerts: NOTE, TIP, IMPORTANT, CAUTION, WARNING |
+| Steps | Run as they are | Use a numbered list |
+| Progress checklist | Runs as it is | Use the Learn checklist, a static list with check marks |
+| Terminal | Runs as it is | Add a recording as an image or a video |
+| Commit graph | Runs as it is | Add a recording as an image or a video |
+| Code tour | Runs as it is | Add a recording as an image or a video |
+| Workflow run | Runs as it is | Add a recording as an image or a video |
+| Diagram (`Mermaid`) | Runs as it is | Export the diagram as an image |
+| File tree | Runs as it is | Write the tree as text in a code block, or add an image |
+| Command exercise | Runs as it is | **Confirm.** The Markdown reference has no equivalent. Link to the lesson on GitHub Pages |
+| Flashcards | Run as they are | **Confirm.** The Markdown reference has no equivalent. Link to the lesson on GitHub Pages |
+| Tabs | Run as they are | **Confirm.** The Markdown reference page doesn't describe tabs |
+| Accordions | Run as they are | **Confirm.** The Markdown reference page doesn't describe an equivalent |
+
+## Learn syntax for the mapped features
+
+### Alerts
+
+The Markdown reference advises one or two alerts for each article.
+
+```md
+> [!NOTE]
+> Information the user should notice even if skimming.
+```
+
+### Checklist
+
+```md
+> [!div class="checklist"]
+> * Create a branch
+> * Commit a change
+> * Open a pull request
+```
+
+### Image or animated GIF
+
+Learn supports `.jpg` and `.png` files by default. For a `.gif` file, the repository must list the file type as a resource in `docfx.json`.
+
+```md
+:::image type="content" source="../media/commit-graph.png" alt-text="Commit graph that shows a branch, two commits, and a merge into main.":::
+```
+
+**Confirm:** whether your Learn repository already lists `.gif` as a resource.
+
+### Video
+
+The [.NET docs style guide](https://learn.microsoft.com/contribute/dotnet/dotnet-style-guide) shows this syntax for an embedded video.
+
+```md
+> [!VIDEO https://www.youtube.com/embed/VIDEO-ID]
+```
+
+**Confirm:** which video hosts your Learn repository accepts.
+
+## Write for both places
+
+- Keep the teaching text in plain Markdown. Plain text moves between the two places with no change.
+- Give every animated element a caption that states the point. The caption still works when the element becomes a still image.
+- Write knowledge check questions once. Use the same question, answers, and feedback in the `Quiz` tag and in the module's knowledge check unit.

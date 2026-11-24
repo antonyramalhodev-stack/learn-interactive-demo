@@ -20,14 +20,13 @@ export interface TerminalProps {
   loop?: boolean;
   /** Milliseconds for each typed character. */
   speed?: number;
-  onStatus?: (text: string) => void;
 }
 
 /**
  * A terminal session that types itself when the reader scrolls to it.
  * Nothing runs: the component plays back the lines you give it.
  */
-export function Terminal({ title = 'Terminal', lines, loop = false, speed = 32, onStatus }: TerminalProps) {
+export function Terminal({ title = 'Terminal', lines, loop = false, speed = 32 }: TerminalProps) {
   const [ref, inView] = useInView<HTMLDivElement>();
   const reduced = useReducedMotion();
   const [line, setLine] = useState(0);
@@ -66,12 +65,6 @@ export function Terminal({ title = 'Terminal', lines, loop = false, speed = 32, 
     }, delay);
     return () => window.clearTimeout(id);
   }, [chars, done, inView, line, lines, loop, reduced, speed]);
-
-  useEffect(() => {
-    if (!onStatus || !inView || done) return;
-    const current = lines[line];
-    if ((current.type ?? 'command') === 'command') onStatus(`$ ${current.text}`);
-  }, [done, inView, line, lines, onStatus]);
 
   const replay = () => {
     setLine(0);

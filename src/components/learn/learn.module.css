@@ -172,38 +172,6 @@
   font-size: var(--text-body-size-small);
 }
 
-/* Component gallery */
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  gap: var(--base-size-16);
-}
-
-.galleryItem {
-  display: flex;
-  flex-direction: column;
-  gap: var(--base-size-12);
-  padding: var(--base-size-16);
-  border: var(--borderWidth-thin) solid var(--borderColor-default);
-  border-radius: var(--borderRadius-medium);
-  background: var(--bgColor-default);
-}
-
-.galleryTitle {
-  margin: 0;
-  color: var(--fgColor-muted);
-  font-size: var(--text-body-size-small);
-  font-weight: var(--base-text-weight-semibold);
-}
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--base-size-8);
-}
-
 /* Mermaid diagrams */
 
 .diagram {

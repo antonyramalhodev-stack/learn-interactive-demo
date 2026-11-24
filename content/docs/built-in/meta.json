@@ -1,4 +1,8 @@
 {
-  "title": "Built-in elements",
-  "pages": ["tabs-and-code", "steps-and-callouts", "reference"]
+  "title": "Page basics",
+  "pages": [
+    "tabs-and-code",
+    "steps-and-callouts",
+    "reference"
+  ]
 }

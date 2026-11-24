@@ -27,9 +27,6 @@ export interface GitGraphProps {
   loop?: boolean;
   /** Hide the step buttons. Use with `autoPlay` and `loop` for a decorative graph. */
   compact?: boolean;
-  onStatus?: (text: string) => void;
-  /** Called with the index of the event on screen. */
-  onStep?: (index: number) => void;
 }
 
 const laneColors = [
@@ -122,8 +119,6 @@ export function GitGraph({
   autoPlay = true,
   loop = false,
   compact = false,
-  onStatus,
-  onStep,
 }: GitGraphProps) {
   const [ref, inView] = useInView<HTMLDivElement>();
   const reduced = useReducedMotion();
@@ -154,14 +149,6 @@ export function GitGraph({
   }, [inView, lastStep, loop, playing, reduced, step]);
 
   const current = events[step];
-
-  useEffect(() => {
-    if (onStatus && inView) onStatus(`git: ${current.label}`);
-  }, [current.label, inView, onStatus]);
-
-  useEffect(() => {
-    onStep?.(step);
-  }, [onStep, step]);
 
   const go = (next: number) => {
     setPlaying(false);

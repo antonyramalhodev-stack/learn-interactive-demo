@@ -1,23 +1,19 @@
 ---
-title: Primer components
-description: Buttons, labels, menus, and more from GitHub's component library.
+title: GitHub branding
+description: How the site gets GitHub's look from the Primer design system.
 ---
 
-Primer is GitHub's open-source design system. This site uses three Primer packages:
+Primer is GitHub's open-source design system. Every element on this site takes its colors, spacing, type, and icons from Primer, so new elements match the others with no extra design work.
 
 | Package | What it provides |
 | --- | --- |
-| `@primer/react` | React components such as buttons, forms, menus, and labels |
+| `@primer/react` | React components such as buttons, forms, and labels |
 | `@primer/primitives` | Design tokens: the colors, spacing, and type scale as CSS variables |
 | `@primer/octicons-react` | The Octicons icon set |
 
-## Live components
+The site font is Mona Sans, loaded from the `@fontsource-variable/mona-sans` package.
 
-Every control in this gallery works. Switch the color mode to see the components follow it.
-
-<PrimerShowcase />
-
-## Use a component in your own widget
+## Use a Primer component in your own element
 
 Import the component in a client component, then register that component in `src/components/mdx.tsx` so your pages can use it.
 
@@ -53,7 +49,7 @@ The Primer tokens are CSS variables, so your own styles can use the same colors 
 
 ## How the theme works
 
-The file `src/app/global.css` maps the Fumadocs color variables to Primer tokens. The sidebar, the callouts, the search dialog, and the code blocks all pick up the same colors.
+The file `src/app/global.css` maps the Fumadocs color variables to Primer tokens. The sidebar, the callouts, the search dialog, and the code blocks all pick up the same colors in light and dark mode.
 
 ```css title="src/app/global.css"
 html:root,
