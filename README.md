@@ -7,34 +7,73 @@ A demo of interactive learning content on GitHub Pages. The site uses [Fumadocs]
 
 ## What's inside
 
-A focused set of lesson elements. Each one runs in the browser.
+A focused set of lesson elements in one folder: `src/components/elements`. Each element is one `.tsx` file and one `.module.css` file, and each one runs in the browser.
 
 **Explain**
 
 Each one plays when the reader scrolls to it and shows its end state when the reader's system asks for reduced motion.
 
-| Component | What it does | Source |
-| --- | --- | --- |
-| `Terminal` | A terminal session that types itself | `src/components/motion/terminal.tsx` |
-| `GitGraph` | A commit graph that draws itself one step at a time | `src/components/motion/git-graph.tsx` |
-| `Timeline` | A sequence of events that appear one after another | `src/components/motion/timeline.tsx` |
-| `CodeTour` | A highlight that walks through a code sample | `src/components/motion/code-tour.tsx` |
-| `WorkflowRun` | Jobs and steps that run in order | `src/components/motion/workflow-run.tsx` |
-| `Mermaid` | A diagram from text that uses the Primer colors | `src/components/learn/mermaid.tsx` |
+| Tag | What it does |
+| --- | --- |
+| `Terminal` | A terminal session that types itself |
+| `GitGraph` | A commit graph that draws itself one step at a time |
+| `Timeline` with `Event` | A sequence of events that appear one after another |
+| `CodeTour` with `Stop` | A highlight that walks through a code sample |
+| `WorkflowRun` | Jobs and steps that run in order |
+| `Mermaid` | A diagram from text that uses the Primer colors |
 
 **Practice**
 
-| Component | What it does | Source |
-| --- | --- | --- |
-| `Quiz` | A single-choice question with feedback for each answer | `src/components/learn/quiz.tsx` |
-| `CommandExercise` | The learner types a command and the page checks it | `src/components/learn/command-exercise.tsx` |
-| `Flashcards` | A deck of terms that flip to show the answer | `src/components/learn/flashcards.tsx` |
-| `Checklist` | A checklist with a progress bar that the browser saves | `src/components/learn/checklist.tsx` |
-| `LessonMeta` | Chips for time, level, and prerequisites | `src/components/learn/lesson-meta.tsx` |
+| Tag | What it does |
+| --- | --- |
+| `Quiz` with `Answer` | A single-choice question with feedback for each answer |
+| `CommandExercise` | The learner types a command and the page checks it |
+| `Flashcards` with `Flashcard` | A deck of terms that flip to show the answer |
+| `Checklist` with `Task` | A checklist with a progress bar that the browser saves |
+| `LessonMeta` | Chips for time, level, and prerequisites |
 
 **Page basics (Fumadocs)**
 
 Tabs, code tabs, code blocks with titles and highlights, steps, callouts, accordions, a file tree, search, and light and dark mode.
+
+## Two ways to write an element
+
+A list of items uses child tags:
+
+```mdx
+<Quiz question="Which command creates a branch and switches to it?">
+  <Answer correct feedback="The -c option creates the branch.">git switch -c docs</Answer>
+  <Answer feedback="The -d option deletes a branch.">git branch -d docs</Answer>
+</Quiz>
+```
+
+A script uses plain text between the tags, inside `` {`...`} ``:
+
+```mdx
+<Terminal>{`
+$ git switch -c docs
+Switched to a new branch 'docs'
+`}</Terminal>
+```
+
+## Reuse the elements in another site
+
+The folder `src/components/elements` has no ties to this site. To use it in another React 19 site that renders MDX:
+
+1. Copy the folder.
+2. Install the packages: `npm install @primer/react @primer/primitives @primer/octicons-react mermaid`.
+3. Import the Primer tokens in your global CSS, as `src/app/global.css` does.
+4. Set `data-color-mode`, `data-light-theme`, and `data-dark-theme` on the `html` element.
+5. Add the elements to your MDX components: `{ ...elements }`.
+
+The shared parts are small:
+
+| File | What it gives every element |
+| --- | --- |
+| `panel.tsx` | The frame: a title bar and a body |
+| `hooks.ts` | In-view detection, reduced motion, auto stepping, copy, and saved state |
+| `step-nav.tsx` | Previous, play, and next buttons |
+| `script.ts` | The reader for text between the tags |
 
 ## Where the elements run
 
@@ -66,17 +105,7 @@ GitHub Pages is available for public repositories on GitHub Free. A private repo
 
 - Pages live in `content/docs`. Each `.mdx` file is a page.
 - Each `meta.json` file sets the sidebar order for its folder.
-- Components listed in `src/components/mdx.tsx` work in any page without an import.
-
-```mdx
-<Quiz
-  question="Which command creates a branch and switches to it?"
-  options={[
-    { label: 'git switch -c my-branch', correct: true, feedback: 'The -c option creates the branch.' },
-    { label: 'git branch -d my-branch', feedback: 'The -d option deletes a branch.' },
-  ]}
-/>
-```
+- Every tag in `src/components/elements/index.ts` works in any page without an import.
 
 ## How the GitHub look works
 

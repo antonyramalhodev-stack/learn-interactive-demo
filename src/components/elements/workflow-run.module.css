@@ -1,0 +1,187 @@
+.trigger {
+  display: flex;
+  padding: var(--base-size-8) var(--base-size-12);
+  overflow-x: auto;
+  border: var(--borderWidth-thin) solid var(--borderColor-default);
+  border-radius: var(--borderRadius-medium);
+  background: var(--bgColor-muted);
+  font-family: var(--fontStack-monospace);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+.jobs {
+  display: flex;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.job {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0;
+}
+
+/* The line between two jobs. It fills when the next job starts. */
+.wire {
+  position: relative;
+  flex: none;
+  width: 2rem;
+  height: 2px;
+  overflow: hidden;
+  background: var(--borderColor-default);
+}
+
+.wire::after {
+  position: absolute;
+  inset: 0;
+  background: var(--bgColor-success-emphasis);
+  content: '';
+  transform: scaleX(0);
+  transform-origin: left top;
+  transition: transform 500ms ease;
+}
+
+.running .wire::after,
+.done .wire::after {
+  transform: none;
+}
+
+.card {
+  flex: 1;
+  align-self: stretch;
+  min-width: 0;
+  padding: var(--base-size-12);
+  border: var(--borderWidth-thin) solid var(--borderColor-default);
+  border-radius: var(--borderRadius-medium);
+  transition:
+    border-color 300ms ease,
+    box-shadow 300ms ease,
+    opacity 300ms ease;
+}
+
+.queued .card {
+  opacity: 0.65;
+}
+
+.running .card {
+  border-color: var(--borderColor-attention-emphasis);
+  box-shadow: 0 0 0 3px var(--bgColor-attention-muted);
+}
+
+.done .card {
+  border-color: var(--borderColor-success-emphasis);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-8);
+  font-weight: var(--base-text-weight-semibold);
+}
+
+.head svg {
+  flex: none;
+  color: var(--fgColor-muted);
+}
+
+.done .head svg {
+  color: var(--fgColor-success);
+}
+
+.steps {
+  display: grid;
+  gap: var(--base-size-4);
+  margin: var(--base-size-8) 0 0;
+  padding: 0;
+  color: var(--fgColor-muted);
+  font-size: var(--text-body-size-small);
+  list-style: none;
+}
+
+.steps li {
+  position: relative;
+  padding-left: 1.125rem;
+  transition: color 300ms ease;
+}
+
+.steps li::before {
+  position: absolute;
+  top: 0.4em;
+  left: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 1.5px solid var(--borderColor-default);
+  border-radius: 50%;
+  content: '';
+  transition:
+    background 300ms ease,
+    border-color 300ms ease;
+}
+
+.steps .stepDone {
+  color: var(--fgColor-default);
+}
+
+.steps .stepDone::before {
+  border-color: var(--bgColor-success-emphasis);
+  background: var(--bgColor-success-emphasis);
+}
+
+.steps .stepNow {
+  color: var(--fgColor-attention);
+}
+
+.steps .stepNow::before {
+  border-color: var(--fgColor-attention);
+}
+
+.result {
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-8);
+  margin: 0;
+  padding: var(--base-size-8) var(--base-size-12);
+  border: var(--borderWidth-thin) dashed var(--borderColor-default);
+  border-radius: var(--borderRadius-medium);
+  color: var(--fgColor-muted);
+  transition:
+    background 400ms ease,
+    border-color 400ms ease,
+    color 400ms ease;
+}
+
+.resultOn {
+  border-style: solid;
+  border-color: var(--borderColor-success-emphasis);
+  background: var(--bgColor-success-muted);
+  color: var(--fgColor-success);
+  font-weight: var(--base-text-weight-semibold);
+}
+
+@media (max-width: 40rem) {
+  .jobs,
+  .job {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .wire {
+    width: 2px;
+    height: 1.25rem;
+    margin-left: 1.25rem;
+  }
+
+  .wire::after {
+    transform: scaleY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wire::after {
+    transition: none;
+  }
+}

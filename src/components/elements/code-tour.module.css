@@ -1,0 +1,87 @@
+.scroll {
+  --line: 1.5rem;
+  overflow-x: auto;
+}
+
+.code {
+  position: relative;
+  min-width: max-content;
+  padding: var(--base-size-12) 0;
+  font-family: var(--fontStack-monospace);
+  font-size: 0.8125rem;
+  line-height: var(--line);
+}
+
+/* The highlight. It slides to the lines of the current stop. */
+.band {
+  position: absolute;
+  top: var(--base-size-12);
+  right: 0;
+  left: 0;
+  border-left: 3px solid var(--borderColor-accent-emphasis);
+  background: var(--bgColor-accent-muted);
+  pointer-events: none;
+  transition:
+    transform 420ms cubic-bezier(0.4, 0, 0.2, 1),
+    height 420ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.row {
+  position: relative;
+  display: flex;
+  height: var(--line);
+  padding-right: var(--base-size-16);
+  opacity: 0.5;
+  white-space: pre;
+  transition: opacity 300ms ease;
+}
+
+.focus {
+  opacity: 1;
+}
+
+.number {
+  flex: none;
+  width: 3rem;
+  padding-right: 1rem;
+  color: var(--fgColor-muted);
+  text-align: right;
+  user-select: none;
+}
+
+.note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--base-size-12);
+  padding: var(--base-size-12) var(--base-size-16);
+  border-top: var(--borderWidth-thin) solid var(--borderColor-default);
+}
+
+.note > div:first-child {
+  flex: 1;
+  min-width: 14rem;
+}
+
+.title {
+  margin: 0;
+  font-weight: var(--base-text-weight-semibold);
+}
+
+.text {
+  margin-top: var(--base-size-4);
+  color: var(--fgColor-muted);
+}
+
+/* MDX can wrap the note text in a paragraph. */
+.text p {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .band,
+  .row {
+    transition: none;
+  }
+}

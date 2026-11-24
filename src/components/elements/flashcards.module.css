@@ -1,0 +1,74 @@
+.stage {
+  perspective: 1200px;
+}
+
+.card {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 11rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 300ms ease;
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--borderColor-accent-emphasis);
+  outline-offset: 2px;
+  border-radius: var(--borderRadius-medium);
+}
+
+.flipped {
+  transform: rotateY(180deg);
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--base-size-8);
+  padding: var(--base-size-24);
+  border: var(--borderWidth-thin) solid var(--borderColor-default);
+  border-radius: var(--borderRadius-medium);
+  background: var(--bgColor-muted);
+  text-align: center;
+  backface-visibility: hidden;
+}
+
+.back {
+  border-color: var(--borderColor-accent-muted);
+  background: var(--bgColor-accent-muted);
+  transform: rotateY(180deg);
+}
+
+.side {
+  color: var(--fgColor-muted);
+  font-size: var(--text-body-size-small);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.text {
+  font-size: var(--text-title-size-small);
+  font-weight: var(--base-text-weight-semibold);
+  line-height: var(--text-title-lineHeight-small);
+}
+
+/* MDX can wrap the answer text in a paragraph. */
+.text p {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}

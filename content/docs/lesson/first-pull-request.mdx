@@ -21,16 +21,13 @@ By the end of this lesson, you'll be able to:
 
 You make changes on a branch, then you propose them with a pull request. After review, a maintainer merges the pull request into the default branch.
 
-<GitGraph
-  title="From branch to merge"
-  events={[
-    { type: 'commit', branch: 'main', label: 'Start from the default branch' },
-    { type: 'branch', branch: 'update-readme', from: 'main', label: 'Create a branch' },
-    { type: 'commit', branch: 'update-readme', label: 'Commit a change' },
-    { type: 'commit', branch: 'update-readme', label: 'Push the branch and open a pull request' },
-    { type: 'merge', branch: 'update-readme', into: 'main', label: 'Merge the pull request' },
-  ]}
-/>
+<GitGraph title="From branch to merge">{`
+commit main: Start from the default branch
+branch update-readme from main: Create a branch
+commit update-readme: Commit a change
+commit update-readme: Push the branch and open a pull request
+merge update-readme into main: Merge the pull request
+`}</GitGraph>
 
 ## Follow the steps
 
@@ -98,82 +95,61 @@ git push -u origin update-readme
 
 After you open the pull request, the review starts.
 
-<Timeline
-  events={[
-    { icon: 'pull-request', color: 'success', title: 'You open the pull request' },
-    {
-      icon: 'review',
-      color: 'accent',
-      title: 'A reviewer reads the change',
-      text: 'The reviewer can comment, approve, or request changes.',
-    },
-    {
-      icon: 'commit',
-      title: 'You push more commits',
-      text: 'New commits on the branch show up in the same pull request.',
-    },
-    { icon: 'merge', color: 'done', title: 'A maintainer merges the pull request' },
-  ]}
-/>
+<Timeline>
+  <Event icon="pull-request" color="success" title="You open the pull request" />
+  <Event icon="review" color="accent" title="A reviewer reads the change">
+    The reviewer can comment, approve, or request changes.
+  </Event>
+  <Event icon="commit" title="You push more commits">
+    New commits on the branch show up in the same pull request.
+  </Event>
+  <Event icon="merge" color="done" title="A maintainer merges the pull request" />
+</Timeline>
 
 ## Watch the whole flow
 
-<Terminal
-  title="The commands in order"
-  lines={[
-    { text: 'git switch -c update-readme' },
-    { type: 'output', text: "Switched to a new branch 'update-readme'" },
-    { text: 'git add README.md' },
-    { text: 'git commit -m "Update README"' },
-    { text: 'git push -u origin update-readme' },
-    { text: 'gh pr create --fill' },
-  ]}
-/>
+<Terminal title="The commands in order">{`
+$ git switch -c update-readme
+Switched to a new branch 'update-readme'
+$ git add README.md
+$ git commit -m "Update README"
+$ git push -u origin update-readme
+$ gh pr create --fill
+`}</Terminal>
 
 ## Practice
 
 <CommandExercise
   prompt="Create a branch named fix-typo and switch to it."
-  answers={['git switch -c fix-typo', 'git checkout -b fix-typo']}
   hint="Use git switch with the -c option, followed by the branch name."
   placeholder="git ..."
-/>
+>{`
+git switch -c fix-typo
+git checkout -b fix-typo
+`}</CommandExercise>
 
 ## Check your knowledge
 
-<Quiz
-  question="What does git push -u origin update-readme do?"
-  options={[
-    {
-      label: 'It merges update-readme into the default branch.',
-      feedback: 'A push uploads commits. The merge happens later, through the pull request.',
-    },
-    {
-      label: 'It uploads the branch and sets it as the upstream branch.',
-      correct: true,
-      feedback:
-        'The -u option links your local branch to the remote branch, so later pushes need no arguments.',
-    },
-    {
-      label: 'It deletes the update-readme branch on GitHub.',
-      feedback: 'This command uploads the branch. It does not delete anything.',
-    },
-  ]}
-/>
+<Quiz question="What does git push -u origin update-readme do?">
+  <Answer feedback="A push uploads commits. The merge happens later, through the pull request.">
+    It merges update-readme into the default branch.
+  </Answer>
+  <Answer correct feedback="The -u option links your local branch to the remote branch, so later pushes need no arguments.">
+    It uploads the branch and sets it as the upstream branch.
+  </Answer>
+  <Answer feedback="This command uploads the branch. It does not delete anything.">
+    It deletes the update-readme branch on GitHub.
+  </Answer>
+</Quiz>
 
 ## Review the terms
 
-<Flashcards
-  cards={[
-    { front: 'Branch', back: 'A separate line of work in a repository.' },
-    { front: 'Commit', back: 'A saved snapshot of your changes, with a message.' },
-    { front: 'Upstream branch', back: 'The remote branch that your local branch tracks.' },
-    {
-      front: 'Pull request',
-      back: 'A proposal to merge the changes from one branch into another.',
-    },
-  ]}
-/>
+<Flashcards>
+  <Flashcard term="Branch">A separate line of work in a repository.</Flashcard>
+  <Flashcard term="Commit">A saved snapshot of your changes, with a message.</Flashcard>
+  <Flashcard term="Upstream branch">The remote branch that your local branch tracks.</Flashcard>
+  <Flashcard term="Pull request">A proposal to merge the changes from one branch into another.</Flashcard>
+</Flashcards>
 
 ## Common questions
 
@@ -188,8 +164,9 @@ After you open the pull request, the review starts.
 
 ## Track your progress
 
-<Checklist
-  id="first-pull-request"
-  title="Lesson tasks"
-  items={['Create a branch', 'Commit a change', 'Push the branch', 'Open a pull request']}
-/>
+<Checklist id="first-pull-request" title="Lesson tasks">
+  <Task>Create a branch</Task>
+  <Task>Commit a change</Task>
+  <Task>Push the branch</Task>
+  <Task>Open a pull request</Task>
+</Checklist>

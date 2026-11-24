@@ -1,5 +1,6 @@
 import { ClockIcon, MortarBoardIcon, RocketIcon } from '@primer/octicons-react';
-import styles from './learn.module.css';
+import ui from './panel.module.css';
+import styles from './lesson-meta.module.css';
 
 export interface LessonMetaProps {
   duration: string;
@@ -8,20 +9,24 @@ export interface LessonMetaProps {
   requires?: string;
 }
 
-/** A row of chips for the top of a lesson: time, level, and prerequisites. */
+/**
+ * Chips for the top of a lesson.
+ *
+ *   <LessonMeta duration="10 minutes" level="Beginner" requires="Git and a GitHub repository" />
+ */
 export function LessonMeta({ duration, level, requires }: LessonMetaProps) {
   return (
-    <div className={`learn-widget not-prose ${styles.meta}`}>
-      <span className={styles.metaItem}>
+    <div className={`learn-element not-prose ${ui.root} ${styles.meta}`}>
+      <span className={styles.chip}>
         <ClockIcon size={16} aria-hidden />
         {duration}
       </span>
-      <span className={styles.metaItem}>
+      <span className={styles.chip}>
         <MortarBoardIcon size={16} aria-hidden />
         {level}
       </span>
       {requires ? (
-        <span className={styles.metaItem}>
+        <span className={styles.chip}>
           <RocketIcon size={16} aria-hidden />
           {requires}
         </span>

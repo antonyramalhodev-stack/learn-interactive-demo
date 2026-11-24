@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { Button, IconButton, Label } from '@primer/react';
 import {
@@ -10,50 +9,28 @@ import {
   MarkGithubIcon,
   RocketIcon,
 } from '@primer/octicons-react';
-import { Checklist, CommandExercise, Flashcards, Quiz } from '../learn';
-import { CodeTour, GitGraph, Terminal, Timeline, WorkflowRun } from '../motion';
-import type { GitEvent } from '../motion/git-graph';
+import {
+  Answer,
+  Checklist,
+  CodeTour,
+  CommandExercise,
+  Flashcard,
+  Flashcards,
+  GitGraph,
+  Quiz,
+  Stop,
+  Task,
+  Terminal,
+  Timeline,
+  TimelineEvent,
+  WorkflowRun,
+} from '../elements';
+import { useCopy } from '../elements/hooks';
 import styles from './home.module.css';
 
-const heroEvents: GitEvent[] = [
-  { type: 'commit', branch: 'main', label: 'Start from main' },
-  { type: 'branch', branch: 'update-readme', from: 'main', label: 'Create a branch' },
-  { type: 'commit', branch: 'update-readme', label: 'Commit a change' },
-  { type: 'commit', branch: 'update-readme', label: 'Push and open a pull request' },
-  { type: 'merge', branch: 'update-readme', into: 'main', label: 'Merge the pull request' },
-];
-
-const tourCode = `<Quiz
-  question="Which command creates a branch?"
-  options={[
-    { label: 'git switch -c docs', correct: true },
-    { label: 'git branch -d docs' },
-  ]}
-/>`;
-
-const tourSteps = [
-  { lines: 1 as const, title: 'Start with the tag', text: 'Each element is one tag in the MDX file.' },
-  { lines: 2 as const, title: 'Ask the question', text: 'The question shows above the answers.' },
-  {
-    lines: [3, 6] as [number, number],
-    title: 'List the answers',
-    text: 'Mark the right answer with correct: true.',
-  },
-];
-
 function CloneCommand({ repoUrl }: { repoUrl: string }) {
-  const [copied, setCopied] = useState(false);
+  const [copied, copy] = useCopy();
   const command = `git clone ${repoUrl}.git`;
-
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(command);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1600);
-    } catch {
-      // Some embedded previews block the clipboard. The command stays visible to copy by hand.
-    }
-  };
 
   return (
     <div className={styles.command}>
@@ -66,7 +43,7 @@ function CloneCommand({ repoUrl }: { repoUrl: string }) {
         aria-label={copied ? 'Copied' : 'Copy the clone command'}
         variant="invisible"
         size="small"
-        onClick={copy}
+        onClick={() => copy(command)}
       />
     </div>
   );
@@ -115,7 +92,13 @@ export function Home({ repoUrl }: { repoUrl: string }) {
           </div>
           <CloneCommand repoUrl={repoUrl} />
         </div>
-        <GitGraph title="update-readme" events={heroEvents} autoPlay loop compact />
+        <GitGraph title="update-readme" loop>{`
+commit main: Start from main
+branch update-readme from main: Create a branch
+commit update-readme: Commit a change
+commit update-readme: Push and open a pull request
+merge update-readme into main: Merge the pull request
+`}</GitGraph>
       </section>
 
       <section className={styles.section}>
@@ -125,46 +108,46 @@ export function Home({ repoUrl }: { repoUrl: string }) {
           text="These elements play when the reader scrolls to them."
         />
         <div className={styles.duo}>
-          <Terminal
-            title="Terminal"
-            loop
-            lines={[
-              { text: 'git switch -c update-readme' },
-              { type: 'output', text: "Switched to a new branch 'update-readme'" },
-              { text: 'git add README.md' },
-              { text: 'git commit -m "Update README"' },
-              { text: 'git push -u origin update-readme' },
-            ]}
-          />
-          <CodeTour title="lesson.mdx" code={tourCode} steps={tourSteps} autoPlay />
+          <Terminal loop>{`
+$ git switch -c update-readme
+Switched to a new branch 'update-readme'
+$ git add README.md
+$ git commit -m "Update README"
+$ git push -u origin update-readme
+`}</Terminal>
+          <CodeTour
+            title="lesson.mdx"
+            autoPlay
+            code={`<Quiz question="Which command creates a branch?">
+  <Answer correct>git switch -c docs</Answer>
+  <Answer>git branch -d docs</Answer>
+</Quiz>`}
+          >
+            <Stop lines="1" title="Start with the tag">
+              Each element is one tag in the MDX file.
+            </Stop>
+            <Stop lines="2-3" title="List the answers">
+              Each answer is its own tag.
+            </Stop>
+            <Stop lines="2" title="Mark the right one">
+              Add the word correct to the right answer.
+            </Stop>
+          </CodeTour>
         </div>
-        <Timeline
-          events={[
-            { icon: 'commit', title: 'You commit a change on a branch' },
-            { icon: 'pull-request', color: 'success', title: 'You open a pull request' },
-            { icon: 'review', color: 'accent', title: 'A reviewer reads the change and comments' },
-            { icon: 'merge', color: 'done', title: 'A maintainer merges the pull request' },
-          ]}
-        />
+        <Timeline>
+          <TimelineEvent icon="commit" title="You commit a change on a branch" />
+          <TimelineEvent icon="pull-request" color="success" title="You open a pull request" />
+          <TimelineEvent icon="review" color="accent" title="A reviewer reads the change and comments" />
+          <TimelineEvent icon="merge" color="done" title="A maintainer merges the pull request" />
+        </Timeline>
         <WorkflowRun
           title="Deploy to GitHub Pages"
           trigger="git push origin main"
-          jobs={[
-            {
-              name: 'build',
-              steps: [
-                'Check out the repository',
-                'Set up Node.js',
-                'Read the GitHub Pages settings',
-                'Install dependencies',
-                'Build the static site',
-                'Upload the site',
-              ],
-            },
-            { name: 'deploy', steps: ['Deploy to GitHub Pages'] },
-          ]}
           result="The site is live on GitHub Pages"
-        />
+        >{`
+build: Check out the repository, Set up Node.js, Read the GitHub Pages settings, Install dependencies, Build the static site, Upload the site
+deploy: Deploy to GitHub Pages
+`}</WorkflowRun>
       </section>
 
       <section className={styles.section}>
@@ -174,43 +157,37 @@ export function Home({ repoUrl }: { repoUrl: string }) {
           text="Each element gives feedback right away."
         />
         <div className={styles.duo}>
-          <Quiz
-            question="What does git push -u origin update-readme do?"
-            options={[
-              {
-                label: 'It merges update-readme into the default branch.',
-                feedback: 'A push uploads commits. The merge happens later, through the pull request.',
-              },
-              {
-                label: 'It uploads the branch and sets it as the upstream branch.',
-                correct: true,
-                feedback:
-                  'The -u option links your local branch to the remote branch, so later pushes need no arguments.',
-              },
-            ]}
-          />
+          <Quiz question="What does git push -u origin update-readme do?">
+            <Answer feedback="A push uploads commits. The merge happens later, through the pull request.">
+              It merges update-readme into the default branch.
+            </Answer>
+            <Answer
+              correct
+              feedback="The -u option links your local branch to the remote branch, so later pushes need no arguments."
+            >
+              It uploads the branch and sets it as the upstream branch.
+            </Answer>
+          </Quiz>
           <CommandExercise
             prompt="Create a branch named fix-typo and switch to it."
-            answers={['git switch -c fix-typo', 'git checkout -b fix-typo']}
             hint="Use git switch with the -c option, followed by the branch name."
             placeholder="git ..."
-          />
-          <Flashcards
-            cards={[
-              { front: 'Branch', back: 'A separate line of work in a repository.' },
-              { front: 'Commit', back: 'A saved snapshot of your changes, with a message.' },
-              { front: 'Upstream branch', back: 'The remote branch that your local branch tracks.' },
-              {
-                front: 'Pull request',
-                back: 'A proposal to merge the changes from one branch into another.',
-              },
-            ]}
-          />
-          <Checklist
-            id="home-checklist"
-            title="Lesson tasks"
-            items={['Create a branch', 'Commit a change', 'Push the branch', 'Open a pull request']}
-          />
+          >{`
+git switch -c fix-typo
+git checkout -b fix-typo
+`}</CommandExercise>
+          <Flashcards>
+            <Flashcard term="Branch">A separate line of work in a repository.</Flashcard>
+            <Flashcard term="Commit">A saved snapshot of your changes, with a message.</Flashcard>
+            <Flashcard term="Upstream branch">The remote branch that your local branch tracks.</Flashcard>
+            <Flashcard term="Pull request">A proposal to merge the changes from one branch into another.</Flashcard>
+          </Flashcards>
+          <Checklist id="home-checklist" title="Lesson tasks">
+            <Task>Create a branch</Task>
+            <Task>Commit a change</Task>
+            <Task>Push the branch</Task>
+            <Task>Open a pull request</Task>
+          </Checklist>
         </div>
       </section>
 

@@ -19,7 +19,7 @@ A file tree shows where things live. Readers can open and close the folders.
   </Folder>
   <Folder name="src">
     <Folder name="components">
-      <Folder name="learn">
+      <Folder name="elements">
         <File name="quiz.tsx" />
         <File name="checklist.tsx" />
         <File name="flashcards.tsx" />
@@ -42,11 +42,10 @@ How you write it:
 
 ## Diagram
 
-The `Mermaid` component draws a diagram from text. It uses the Primer colors and redraws when the reader changes the color mode.
+The `Mermaid` element draws a diagram from text. It uses the Primer colors and redraws when the reader changes the color mode.
 
-<Mermaid
-  label="Sequence of a pull request review between an author, GitHub, and a reviewer"
-  chart={`sequenceDiagram
+<Mermaid label="Sequence of a pull request review between an author, GitHub, and a reviewer">{`
+sequenceDiagram
   participant A as Author
   participant G as GitHub
   participant R as Reviewer
@@ -54,15 +53,14 @@ The `Mermaid` component draws a diagram from text. It uses the Primer colors and
   A->>G: Open a pull request
   G->>R: Request a review
   R->>G: Approve the changes
-  A->>G: Merge the pull request`}
-/>
+  A->>G: Merge the pull request
+`}</Mermaid>
 
 How you write it:
 
 ```mdx
-<Mermaid
-  label="Flow from a branch to a pull request"
-  chart={`flowchart LR
-  A[Create a branch] --> B[Open a pull request]`}
-/>
+<Mermaid label="Flow from a branch to a pull request">{`
+flowchart LR
+  A[Create a branch] --> B[Open a pull request]
+`}</Mermaid>
 ```

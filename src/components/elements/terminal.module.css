@@ -1,0 +1,22 @@
+.screen {
+  min-height: calc((var(--lines) + 1) * 1.6em + 1.5rem);
+  padding: var(--base-size-12) var(--base-size-16);
+  overflow-x: auto;
+  font-family: var(--fontStack-monospace);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  white-space: pre;
+}
+
+.line {
+  min-height: 1.6em;
+}
+
+.output {
+  color: var(--fgColor-muted);
+}
+
+.comment {
+  color: var(--fgColor-muted);
+  font-style: italic;
+}

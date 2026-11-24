@@ -1,0 +1,14 @@
+.diagram {
+  display: flex;
+  justify-content: center;
+  padding: var(--base-size-16);
+  overflow-x: auto;
+  border: var(--borderWidth-thin) solid var(--borderColor-default);
+  border-radius: var(--borderRadius-medium);
+  background: var(--bgColor-default);
+}
+
+.diagram svg {
+  max-width: 100%;
+  height: auto;
+}

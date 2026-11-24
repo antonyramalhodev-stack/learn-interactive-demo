@@ -3,43 +3,36 @@ title: Flashcards
 description: A deck of terms that flip to show the answer.
 ---
 
-The `Flashcards` component shows one card at a time. The learner selects the card to flip it, and uses the arrow buttons to move through the deck.
+The `Flashcards` element shows one card at a time. The learner selects the card to flip it, and uses the arrow buttons to move through the deck.
 
 ## Try it
 
-<Flashcards
-  cards={[
-    { front: 'Repository', back: 'A project folder that Git tracks, with its full history.' },
-    { front: 'Fork', back: "Your own copy of someone else's repository." },
-    { front: 'Clone', back: 'A copy of a repository on your computer.' },
-    { front: 'Merge', back: 'Combine the changes from one branch into another.' },
-  ]}
-/>
+<Flashcards>
+  <Flashcard term="Repository">A project folder that Git tracks, with its full history.</Flashcard>
+  <Flashcard term="Fork">Your own copy of someone else's repository.</Flashcard>
+  <Flashcard term="Clone">A copy of a repository on your computer.</Flashcard>
+  <Flashcard term="Merge">Combine the changes from one branch into another.</Flashcard>
+</Flashcards>
 
 ## How you write it
 
+Add one `Flashcard` tag for each card. The `term` goes on the front, and the text between the tags goes on the back.
+
 ```mdx
-<Flashcards
-  cards={[
-    { front: 'Repository', back: 'A project folder that Git tracks, with its full history.' },
-    { front: 'Clone', back: 'A copy of a repository on your computer.' },
-  ]}
-/>
+<Flashcards>
+  <Flashcard term="Repository">A project folder that Git tracks, with its full history.</Flashcard>
+  <Flashcard term="Fork">Your own copy of someone else's repository.</Flashcard>
+</Flashcards>
 ```
 
-## Properties
+## Properties of a card
 
 <TypeTable
   type={{
-    cards: {
-      description: 'The deck. Each card has a term and an answer.',
-      type: 'Flashcard[]',
-      typeDescription: '{ front: string; back: string }[]',
+    term: {
+      description: 'The text on the front of the card.',
+      type: 'string',
       required: true,
     },
   }}
 />
-
-## What it uses
-
-The component uses `Button`, `IconButton`, and `CounterLabel` from Primer React, plus a CSS flip that turns off when the reader prefers reduced motion. The source is in `src/components/learn/flashcards.tsx`.

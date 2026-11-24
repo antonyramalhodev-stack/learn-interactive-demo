@@ -3,49 +3,44 @@ title: Commit graph
 description: A commit graph that draws itself one step at a time.
 ---
 
-The `GitGraph` component turns a list of events into a commit graph. Each step draws a line and a commit, and the caption explains the step. The reader can play the steps or move through them with the arrows.
+The `GitGraph` element turns a short history into a commit graph. Each step draws a line and a commit, and the caption explains the step. The reader can play the steps or move through them with the arrows.
 
 ## Try it
 
-<GitGraph
-  title="Feature branch flow"
-  events={[
-    { type: 'commit', branch: 'main', label: 'Start from the default branch' },
-    { type: 'branch', branch: 'feature', from: 'main', label: 'Create a branch named feature' },
-    { type: 'commit', branch: 'feature', label: 'Commit your first change' },
-    { type: 'commit', branch: 'main', label: 'Someone else commits to main' },
-    { type: 'commit', branch: 'feature', label: 'Commit a second change' },
-    { type: 'merge', branch: 'feature', into: 'main', label: 'Merge feature into main' },
-  ]}
-/>
+<GitGraph title="Feature branch flow">{`
+commit main: Start from the default branch
+branch feature from main: Create a branch named feature
+commit feature: Commit your first change
+commit main: Someone else commits to main
+commit feature: Commit a second change
+merge feature into main: Merge feature into main
+`}</GitGraph>
 
 ## How you write it
 
-An event is a `commit`, a `branch`, or a `merge`. The component assigns a lane and a color to each branch in the order the branches appear.
+Write one event on each line. The text after the colon is the caption for that step.
 
 ```mdx
-<GitGraph
-  title="Feature branch flow"
-  events={[
-    { type: 'commit', branch: 'main', label: 'Start from the default branch' },
-    { type: 'branch', branch: 'feature', from: 'main', label: 'Create a branch named feature' },
-    { type: 'commit', branch: 'feature', label: 'Commit your first change' },
-    { type: 'merge', branch: 'feature', into: 'main', label: 'Merge feature into main' },
-  ]}
-/>
+<GitGraph title="Feature branch flow">{`
+commit main: Start from the default branch
+branch feature from main: Create a branch named feature
+commit feature: Commit your first change
+merge feature into main: Merge feature into main
+`}</GitGraph>
 ```
+
+A line takes one of three forms:
+
+| Line | What it draws |
+| --- | --- |
+| `commit BRANCH: caption` | A commit on a branch |
+| `branch NEW from BRANCH: caption` | A new branch that starts from another branch |
+| `merge BRANCH into TARGET: caption` | A merge of one branch into another |
 
 ## Properties
 
 <TypeTable
   type={{
-    events: {
-      description: 'The history, in order. Each event is one step.',
-      type: 'GitEvent[]',
-      typeDescription:
-        "{ type: 'commit'; branch; label } | { type: 'branch'; branch; from; label } | { type: 'merge'; branch; into; label }",
-      required: true,
-    },
     title: {
       description: 'The text in the title bar.',
       type: 'string',
@@ -58,11 +53,6 @@ An event is a `commit`, a `branch`, or a `merge`. The component assigns a lane a
     },
     loop: {
       description: 'Start again after the last step.',
-      type: 'boolean',
-      default: 'false',
-    },
-    compact: {
-      description: 'Hide the step buttons. Use it with autoPlay and loop for a decorative graph.',
       type: 'boolean',
       default: 'false',
     },

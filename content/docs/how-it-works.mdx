@@ -37,19 +37,13 @@ description: The project layout, how you add an element to a page, and how the s
     </Folder>
     <Folder name="components" defaultOpen>
       <File name="mdx.tsx" />
-      <Folder name="learn" defaultOpen>
+      <Folder name="elements" defaultOpen>
+        <File name="index.ts" />
+        <File name="panel.tsx" />
+        <File name="hooks.ts" />
         <File name="quiz.tsx" />
-        <File name="checklist.tsx" />
-        <File name="flashcards.tsx" />
-        <File name="command-exercise.tsx" />
-        <File name="mermaid.tsx" />
-      </Folder>
-      <Folder name="motion" defaultOpen>
         <File name="terminal.tsx" />
         <File name="git-graph.tsx" />
-        <File name="timeline.tsx" />
-        <File name="code-tour.tsx" />
-        <File name="workflow-run.tsx" />
       </Folder>
       <Folder name="home">
         <File name="home.tsx" />
@@ -60,11 +54,31 @@ description: The project layout, how you add an element to a page, and how the s
 </Files>
 
 - **`content/docs`** holds the pages. Each `.mdx` file is a page, and each `meta.json` file sets the order of the sidebar.
-- **`src/components/learn`** holds the learning widgets.
-- **`src/components/motion`** holds the animated elements and the hooks they share.
-- **`src/components/home`** holds the home page.
-- **`src/components/mdx.tsx`** lists the components that pages can use without an import.
+- **`src/components/elements`** holds every lesson element. Each element is one `.tsx` file and one `.module.css` file.
+- **`src/components/elements/index.ts`** lists the tags that a lesson can use.
 - **`src/app/global.css`** maps the site colors to the Primer tokens.
+
+## Two ways to write an element
+
+Every element follows one of two patterns.
+
+**A list of items uses child tags.** The quiz, the flashcards, the checklist, the timeline, and the code tour work this way.
+
+```mdx
+<Quiz question="Which command creates a branch and switches to it?">
+  <Answer correct feedback="The -c option creates the branch.">git switch -c docs</Answer>
+  <Answer feedback="The -d option deletes a branch.">git branch -d docs</Answer>
+</Quiz>
+```
+
+**A script uses plain text between the tags.** The terminal, the commit graph, the workflow run, the command exercise, and the diagram work this way. Put the text inside `` {`...`} `` so the page keeps every line as you wrote it.
+
+```mdx
+<Terminal>{`
+$ git switch -c docs
+Switched to a new branch 'docs'
+`}</Terminal>
+```
 
 ## Add an element to a page
 
@@ -90,13 +104,10 @@ description: What the learner gets from this lesson.
 Write the component where you want it to appear.
 
 ```mdx
-<Quiz
-  question="Which branch does a new repository start with?"
-  options={[
-    { label: 'The default branch', correct: true },
-    { label: 'A feature branch' },
-  ]}
-/>
+<Quiz question="Which branch does a new repository start with?">
+  <Answer correct>The default branch</Answer>
+  <Answer>A feature branch</Answer>
+</Quiz>
 ```
 
 </Step>

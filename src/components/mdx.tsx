@@ -5,15 +5,7 @@ import { Step, Steps } from 'fumadocs-ui/components/steps';
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import { TypeTable } from 'fumadocs-ui/components/type-table';
 import type { MDXComponents } from 'mdx/types';
-import {
-  Checklist,
-  CommandExercise,
-  Flashcards,
-  LessonMeta,
-  Mermaid,
-  Quiz,
-} from '@/components/learn';
-import { CodeTour, GitGraph, Terminal, Timeline, WorkflowRun } from '@/components/motion';
+import { elements } from '@/components/elements';
 
 /**
  * Every component in this map works in any .mdx file without an import.
@@ -32,19 +24,8 @@ export function getMDXComponents(components?: MDXComponents) {
     Tab,
     Tabs,
     TypeTable,
-    // Learning widgets built with Primer React
-    Checklist,
-    CommandExercise,
-    Flashcards,
-    LessonMeta,
-    Mermaid,
-    Quiz,
-    // Animated elements
-    CodeTour,
-    GitGraph,
-    Terminal,
-    Timeline,
-    WorkflowRun,
+    // The lesson elements
+    ...elements,
     ...components,
   } satisfies MDXComponents;
 }

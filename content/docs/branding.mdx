@@ -15,9 +15,9 @@ The site font is Mona Sans, loaded from the `@fontsource-variable/mona-sans` pac
 
 ## Use a Primer component in your own element
 
-Import the component in a client component, then register that component in `src/components/mdx.tsx` so your pages can use it.
+Import the component in a client component, then add your element to the list in `src/components/elements/index.ts` so your pages can use it.
 
-```tsx title="src/components/learn/star-button.tsx"
+```tsx title="src/components/elements/star-button.tsx"
 'use client';
 
 import { useState } from 'react';
@@ -39,7 +39,7 @@ export function StarButton() {
 
 The Primer tokens are CSS variables, so your own styles can use the same colors and spacing as the components.
 
-```css title="src/components/learn/learn.module.css"
+```css title="src/components/elements/panel.module.css"
 .panel {
   border: var(--borderWidth-thin) solid var(--borderColor-default);
   border-radius: var(--borderRadius-medium);

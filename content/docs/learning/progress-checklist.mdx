@@ -3,38 +3,35 @@ title: Progress checklist
 description: A checklist with a progress bar that the browser saves.
 ---
 
-The `Checklist` component tracks the tasks in a lesson. The learner's browser saves the progress, so it's still there after a reload.
+The `Checklist` element tracks the tasks in a lesson. The learner's browser saves the progress, so it's still there after a reload.
 
 ## Try it
 
 Select a few items, then reload the page.
 
-<Checklist
-  id="demo-checklist"
-  title="Explore this demo"
-  items={[
-    'Open the sample lesson',
-    'Answer a knowledge check',
-    'Flip a flashcard',
-    'Switch between light and dark mode',
-    'Search for a page',
-  ]}
-/>
+<Checklist id="demo-checklist" title="Explore this demo">
+  <Task>Open the sample lesson</Task>
+  <Task>Answer a knowledge check</Task>
+  <Task>Flip a flashcard</Task>
+  <Task>Switch between light and dark mode</Task>
+  <Task>Search for a page</Task>
+</Checklist>
 
 <Callout title="Where the progress lives" type="warn">
-  The component saves progress in the browser's local storage. Progress doesn't follow the
-  learner to another browser or device. To sync progress across devices, you need a service
-  with sign-in, which a static site doesn't have.
+  The element saves progress in the browser's local storage. Progress doesn't follow the learner
+  to another browser or device. To sync progress across devices, you need a service with sign-in,
+  which a static site doesn't have.
 </Callout>
 
 ## How you write it
 
+Add one `Task` tag for each task. Give each checklist its own `id`.
+
 ```mdx
-<Checklist
-  id="demo-checklist"
-  title="Explore this demo"
-  items={['Open the sample lesson', 'Answer a knowledge check']}
-/>
+<Checklist id="demo-checklist" title="Explore this demo">
+  <Task>Open the sample lesson</Task>
+  <Task>Answer a knowledge check</Task>
+</Checklist>
 ```
 
 ## Properties
@@ -46,11 +43,6 @@ Select a few items, then reload the page.
       type: 'string',
       required: true,
     },
-    items: {
-      description: 'The tasks to track.',
-      type: 'string[]',
-      required: true,
-    },
     title: {
       description: 'The label above the list.',
       type: 'string',
@@ -58,7 +50,3 @@ Select a few items, then reload the page.
     },
   }}
 />
-
-## What it uses
-
-The component uses `CheckboxGroup`, `Checkbox`, `FormControl`, `ProgressBar`, `Label`, and `Button` from Primer React. The source is in `src/components/learn/checklist.tsx`.

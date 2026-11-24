@@ -1,16 +1,30 @@
 'use client';
 
 import { useEffect, useId, useState } from 'react';
-import { useTheme } from 'fumadocs-ui/provider/base';
-import styles from './learn.module.css';
+import { useColorMode } from './hooks';
+import { scriptLines } from './script';
+import ui from './panel.module.css';
+import styles from './mermaid.module.css';
+
+export interface MermaidProps {
+  /** A short description of the diagram for screen readers. */
+  label: string;
+  /** The Mermaid diagram text. */
+  children: string;
+}
 
 /**
- * Renders a Mermaid diagram in the browser and colors it with Primer tokens.
- * The diagram redraws when the reader changes the color mode.
+ * A diagram from text, drawn in the browser with the Primer colors.
+ *
+ *   <Mermaid label="Flow from a branch to a pull request">{`
+ *   flowchart LR
+ *     A[Create a branch] --> B[Open a pull request]
+ *   `}</Mermaid>
  */
-export function Mermaid({ chart, label }: { chart: string; label?: string }) {
+export function Mermaid({ label, children }: MermaidProps) {
+  const chart = scriptLines(children, 'Mermaid').join('\n');
   const id = useId().replace(/[^a-zA-Z0-9]/g, '');
-  const { resolvedTheme } = useTheme();
+  const mode = useColorMode();
   const [svg, setSvg] = useState('');
 
   useEffect(() => {
@@ -27,7 +41,7 @@ export function Mermaid({ chart, label }: { chart: string; label?: string }) {
         theme: 'base',
         fontFamily: 'inherit',
         themeVariables: {
-          darkMode: resolvedTheme === 'dark',
+          darkMode: mode === 'dark',
           background: token('--bgColor-default'),
           primaryColor: token('--bgColor-muted'),
           primaryTextColor: token('--fgColor-default'),
@@ -47,13 +61,13 @@ export function Mermaid({ chart, label }: { chart: string; label?: string }) {
     return () => {
       cancelled = true;
     };
-  }, [chart, id, resolvedTheme]);
+  }, [chart, id, mode]);
 
   return (
     <div
-      className={`learn-widget not-prose ${styles.diagram}`}
+      className={`learn-element not-prose ${ui.root} ${styles.diagram}`}
       role="img"
-      aria-label={label ?? 'Diagram'}
+      aria-label={label}
       // Mermaid sanitizes the SVG (securityLevel: strict) and the source is this site's own MDX.
       dangerouslySetInnerHTML={{ __html: svg }}
     />

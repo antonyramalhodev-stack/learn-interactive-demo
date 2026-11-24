@@ -3,56 +3,35 @@ title: Timeline
 description: A sequence of events that appear one after another.
 ---
 
-The `Timeline` component shows what happens, in order. It uses the Primer Timeline component, so the badges and the connecting line match GitHub. The events appear one after another when the reader scrolls to the timeline.
+The `Timeline` element shows what happens, in order. It uses the Primer Timeline component, so the badges and the connecting line match GitHub. The events appear one after another when the reader scrolls to the timeline.
 
 ## Try it
 
-<Timeline
-  events={[
-    { icon: 'commit', title: 'You commit a change on a branch' },
-    { icon: 'pull-request', color: 'success', title: 'You open a pull request' },
-    {
-      icon: 'review',
-      color: 'accent',
-      title: 'A reviewer reads the change',
-      text: 'The reviewer can comment, approve, or request changes.',
-    },
-    { icon: 'merge', color: 'done', title: 'A maintainer merges the pull request' },
-  ]}
-/>
+<Timeline>
+  <Event icon="commit" title="You commit a change on a branch" />
+  <Event icon="pull-request" color="success" title="You open a pull request" />
+  <Event icon="review" color="accent" title="A reviewer reads the change">
+    The reviewer can comment, approve, or request changes.
+  </Event>
+  <Event icon="merge" color="done" title="A maintainer merges the pull request" />
+</Timeline>
 
 ## How you write it
 
+Add one `Event` tag for each event. Text between the tags becomes the detail under the title.
+
 ```mdx
-<Timeline
-  events={[
-    { icon: 'commit', title: 'You commit a change on a branch' },
-    { icon: 'pull-request', color: 'success', title: 'You open a pull request' },
-    {
-      icon: 'review',
-      color: 'accent',
-      title: 'A reviewer reads the change',
-      text: 'The reviewer can comment, approve, or request changes.',
-    },
-    { icon: 'merge', color: 'done', title: 'A maintainer merges the pull request' },
-  ]}
-/>
+<Timeline>
+  <Event icon="commit" title="You commit a change on a branch" />
+  <Event icon="pull-request" color="success" title="You open a pull request" />
+  <Event icon="review" color="accent" title="A reviewer reads the change">
+    The reviewer can comment, approve, or request changes.
+  </Event>
+  <Event icon="merge" color="done" title="A maintainer merges the pull request" />
+</Timeline>
 ```
 
-## Properties
-
-<TypeTable
-  type={{
-    events: {
-      description: 'The events, in order.',
-      type: 'TimelineEvent[]',
-      typeDescription: '{ title: string; text?: string; icon?: string; color?: string }[]',
-      required: true,
-    },
-  }}
-/>
-
-Each event takes these values:
+## Properties of an event
 
 <TypeTable
   type={{
@@ -60,10 +39,6 @@ Each event takes these values:
       description: 'The event.',
       type: 'string',
       required: true,
-    },
-    text: {
-      description: 'Optional detail under the title.',
-      type: 'string',
     },
     icon: {
       description: 'The Octicon in the badge.',
@@ -79,4 +54,4 @@ Each event takes these values:
 
 ## Motion and accessibility
 
-The timeline is a list, so a screen reader reads the events in order. With reduced motion, every event shows at once.
+A screen reader reads the events in order. With reduced motion, every event shows at once.

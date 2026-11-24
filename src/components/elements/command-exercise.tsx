@@ -3,46 +3,45 @@
 import { useState, type FormEvent } from 'react';
 import { Button, FormControl, TextInput } from '@primer/react';
 import { LightBulbIcon, TerminalIcon } from '@primer/octicons-react';
-import styles from './learn.module.css';
+import { Panel } from './panel';
+import { scriptLines } from './script';
+import ui from './panel.module.css';
+import styles from './command-exercise.module.css';
 
 export interface CommandExerciseProps {
   /** The task the learner completes. */
   prompt: string;
-  /** Every command the exercise accepts. Extra spaces do not matter. */
-  answers: string[];
   hint?: string;
   placeholder?: string;
+  /** The accepted commands, one on each line. */
+  children: string;
 }
 
 const normalize = (value: string) => value.trim().replace(/\s+/g, ' ');
 
 /**
- * A "type the command" exercise. It compares the learner's text with the accepted answers.
- * It does not run anything, so it is safe on a static site.
+ * The learner types a command and the page checks it against the commands you accept.
+ * Nothing runs, so it is safe on a static site.
+ *
+ *   <CommandExercise prompt="Create a branch named fix-typo and switch to it.">{`
+ *   git switch -c fix-typo
+ *   git checkout -b fix-typo
+ *   `}</CommandExercise>
  */
-export function CommandExercise({
-  prompt,
-  answers,
-  hint,
-  placeholder = 'Type the command',
-}: CommandExerciseProps) {
+export function CommandExercise({ prompt, hint, placeholder = 'Type the command', children }: CommandExerciseProps) {
+  const accepted = scriptLines(children, 'CommandExercise').map(normalize);
   const [value, setValue] = useState('');
   const [result, setResult] = useState<'idle' | 'correct' | 'wrong'>('idle');
   const [showHint, setShowHint] = useState(false);
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const accepted = answers.map(normalize);
     setResult(accepted.includes(normalize(value)) ? 'correct' : 'wrong');
   };
 
   return (
-    <div className={`learn-widget not-prose ${styles.panel}`}>
-      <div className={styles.panelHeader}>
-        <TerminalIcon size={16} aria-hidden />
-        Try it
-      </div>
-      <form className={styles.panelBody} onSubmit={onSubmit}>
+    <Panel title="Try it" icon={<TerminalIcon size={16} aria-hidden />}>
+      <form className={styles.form} onSubmit={onSubmit}>
         <FormControl>
           <FormControl.Label>{prompt}</FormControl.Label>
           <TextInput
@@ -61,24 +60,20 @@ export function CommandExercise({
             }}
           />
           {result === 'correct' ? (
-            <FormControl.Validation variant="success">
-              Correct. That command does the job.
-            </FormControl.Validation>
+            <FormControl.Validation variant="success">Correct. That command does the job.</FormControl.Validation>
           ) : null}
           {result === 'wrong' ? (
-            <FormControl.Validation variant="error">
-              Not yet. Check the command and try again.
-            </FormControl.Validation>
+            <FormControl.Validation variant="error">Not yet. Check the command and try again.</FormControl.Validation>
           ) : null}
         </FormControl>
 
         {showHint && hint ? (
-          <p className={styles.hint}>
+          <p className={`${styles.hint} ${ui.pop}`}>
             <strong>Hint:</strong> {hint}
           </p>
         ) : null}
 
-        <div className={styles.actions}>
+        <div className={ui.row}>
           <Button type="submit" variant="primary" disabled={value.trim() === ''}>
             Check
           </Button>
@@ -94,6 +89,6 @@ export function CommandExercise({
           ) : null}
         </div>
       </form>
-    </div>
+    </Panel>
   );
 }

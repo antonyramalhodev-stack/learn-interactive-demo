@@ -1,0 +1,31 @@
+.group {
+  display: grid;
+  gap: var(--base-size-8);
+}
+
+.question {
+  margin: 0 0 var(--base-size-4);
+  font-weight: var(--base-text-weight-semibold);
+}
+
+.answer {
+  display: grid;
+  gap: var(--base-size-8);
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--base-size-8);
+  cursor: pointer;
+}
+
+.option input {
+  flex: none;
+  margin-top: 0.2em;
+}
+
+/* MDX can wrap the answer text in a paragraph. */
+.text p {
+  margin: 0;
+}
