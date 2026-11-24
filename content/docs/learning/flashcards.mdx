@@ -1,0 +1,45 @@
+---
+title: Flashcards
+description: A deck of terms that flip to show the answer.
+---
+
+The `Flashcards` component shows one card at a time. The learner selects the card to flip it, and uses the arrow buttons to move through the deck.
+
+## Try it
+
+<Flashcards
+  cards={[
+    { front: 'Repository', back: 'A project folder that Git tracks, with its full history.' },
+    { front: 'Fork', back: "Your own copy of someone else's repository." },
+    { front: 'Clone', back: 'A copy of a repository on your computer.' },
+    { front: 'Merge', back: 'Combine the changes from one branch into another.' },
+  ]}
+/>
+
+## How you write it
+
+```mdx
+<Flashcards
+  cards={[
+    { front: 'Repository', back: 'A project folder that Git tracks, with its full history.' },
+    { front: 'Clone', back: 'A copy of a repository on your computer.' },
+  ]}
+/>
+```
+
+## Properties
+
+<TypeTable
+  type={{
+    cards: {
+      description: 'The deck. Each card has a term and an answer.',
+      type: 'Flashcard[]',
+      typeDescription: '{ front: string; back: string }[]',
+      required: true,
+    },
+  }}
+/>
+
+## What it uses
+
+The component uses `Button`, `IconButton`, and `CounterLabel` from Primer React, plus a CSS flip that turns off when the reader prefers reduced motion. The source is in `src/components/learn/flashcards.tsx`.

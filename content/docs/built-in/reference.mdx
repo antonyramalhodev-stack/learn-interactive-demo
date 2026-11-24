@@ -1,0 +1,108 @@
+---
+title: Reference elements
+description: Document properties, show a folder layout, and draw a diagram.
+---
+
+## Type table
+
+A type table documents the properties of a component, an API object, or a config file. Select a row to see the details.
+
+<TypeTable
+  type={{
+    question: {
+      description: 'The question the learner answers.',
+      type: 'string',
+      required: true,
+    },
+    options: {
+      description: 'The answers the learner picks from.',
+      type: 'QuizOption[]',
+      typeDescription: '{ label: string; correct?: boolean; feedback?: string }[]',
+      required: true,
+    },
+    shuffle: {
+      description: 'An example of a deprecated property. The table marks it for you.',
+      type: 'boolean',
+      default: 'false',
+      deprecated: true,
+    },
+  }}
+/>
+
+How you write it:
+
+```mdx
+<TypeTable
+  type={{
+    question: {
+      description: 'The question the learner answers.',
+      type: 'string',
+      required: true,
+    },
+  }}
+/>
+```
+
+## File tree
+
+A file tree shows where things live. Readers can open and close the folders.
+
+<Files>
+  <Folder name="content" defaultOpen>
+    <Folder name="docs" defaultOpen>
+      <File name="index.mdx" />
+      <File name="meta.json" />
+      <Folder name="lesson">
+        <File name="first-pull-request.mdx" />
+      </Folder>
+    </Folder>
+  </Folder>
+  <Folder name="src">
+    <Folder name="components">
+      <Folder name="learn">
+        <File name="quiz.tsx" />
+        <File name="checklist.tsx" />
+        <File name="flashcards.tsx" />
+      </Folder>
+    </Folder>
+  </Folder>
+  <File name="package.json" />
+</Files>
+
+How you write it:
+
+```mdx
+<Files>
+  <Folder name="content" defaultOpen>
+    <File name="index.mdx" />
+  </Folder>
+  <File name="package.json" />
+</Files>
+```
+
+## Diagram
+
+The `Mermaid` component draws a diagram from text. It uses the Primer colors and redraws when the reader changes the color mode.
+
+<Mermaid
+  label="Sequence of a pull request review between an author, GitHub, and a reviewer"
+  chart={`sequenceDiagram
+  participant A as Author
+  participant G as GitHub
+  participant R as Reviewer
+  A->>G: Push a branch
+  A->>G: Open a pull request
+  G->>R: Request a review
+  R->>G: Approve the changes
+  A->>G: Merge the pull request`}
+/>
+
+How you write it:
+
+```mdx
+<Mermaid
+  label="Flow from a branch to a pull request"
+  chart={`flowchart LR
+  A[Create a branch] --> B[Open a pull request]`}
+/>
+```

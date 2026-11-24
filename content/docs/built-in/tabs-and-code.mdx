@@ -1,0 +1,111 @@
+---
+title: Tabs and code blocks
+description: Show one set of instructions for several tools, systems, or package managers.
+---
+
+## Tabs
+
+Use tabs when the steps differ by operating system or tool. With `groupId` and `persist`, the site remembers the reader's choice and applies it to every tab group with the same ID.
+
+<Tabs items={['macOS', 'Windows', 'Linux']} groupId="os" persist>
+  <Tab value="macOS">
+    Install Git with Homebrew:
+
+    ```bash
+    brew install git
+    ```
+
+  </Tab>
+  <Tab value="Windows">
+    Install Git with winget:
+
+    ```powershell
+    winget install --id Git.Git -e --source winget
+    ```
+
+  </Tab>
+  <Tab value="Linux">
+    Install Git on Debian or Ubuntu:
+
+    ```bash
+    sudo apt install git
+    ```
+
+  </Tab>
+</Tabs>
+
+How you write it:
+
+````mdx
+<Tabs items={['macOS', 'Windows', 'Linux']} groupId="os" persist>
+  <Tab value="macOS">Install Git with Homebrew.</Tab>
+  <Tab value="Windows">Install Git with winget.</Tab>
+  <Tab value="Linux">Install Git on Debian or Ubuntu.</Tab>
+</Tabs>
+````
+
+## Code tabs
+
+Add `tab="..."` to consecutive code blocks and they merge into one tabbed block.
+
+```bash tab="git switch"
+git switch -c my-branch
+```
+
+```bash tab="git checkout"
+git checkout -b my-branch
+```
+
+How you write it:
+
+````mdx
+```bash tab="git switch"
+git switch -c my-branch
+```
+
+```bash tab="git checkout"
+git checkout -b my-branch
+```
+````
+
+## Package manager tabs
+
+Write one `npm` code block. The site generates the matching command for the other package managers.
+
+```npm
+npm install @primer/react
+```
+
+How you write it:
+
+````mdx
+```npm
+npm install @primer/react
+```
+````
+
+## Titles and highlights
+
+A code block can have a title, highlighted lines, and added or removed lines. Every code block has a copy button.
+
+```tsx title="lesson.mdx"
+<Checklist
+  id="first-pull-request" // [!code highlight]
+  items={[
+    'Create a branch',
+    'Commit a change',
+    'Push the code', // [!code --]
+    'Push the branch', // [!code ++]
+  ]}
+/>
+```
+
+How you write it:
+
+````mdx
+```tsx title="lesson.mdx"
+id="first-pull-request" // [\!code highlight]
+'Push the code', // [\!code --]
+'Push the branch', // [\!code ++]
+```
+````

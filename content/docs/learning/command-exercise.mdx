@@ -1,0 +1,55 @@
+---
+title: Command exercise
+description: The learner types a command and the page checks it.
+---
+
+The `CommandExercise` component gives the learner a task and a command line. It compares the text with the answers you accept. It doesn't run the command, so it works on a static site.
+
+## Try it
+
+<CommandExercise
+  prompt="Show the commit history of the current branch, one line for each commit."
+  answers={['git log --oneline']}
+  hint="Use git log with the --oneline option."
+  placeholder="git ..."
+/>
+
+## How you write it
+
+```mdx
+<CommandExercise
+  prompt="Show the commit history of the current branch, one line for each commit."
+  answers={['git log --oneline']}
+  hint="Use git log with the --oneline option."
+/>
+```
+
+## Properties
+
+<TypeTable
+  type={{
+    prompt: {
+      description: 'The task the learner completes.',
+      type: 'string',
+      required: true,
+    },
+    answers: {
+      description: 'Every command the exercise accepts. Extra spaces do not matter.',
+      type: 'string[]',
+      required: true,
+    },
+    hint: {
+      description: 'Optional text behind a Show hint button.',
+      type: 'string',
+    },
+    placeholder: {
+      description: 'Placeholder text for the input.',
+      type: 'string',
+      default: "'Type the command'",
+    },
+  }}
+/>
+
+## What it uses
+
+The component uses `TextInput`, `FormControl`, and `Button` from Primer React. The source is in `src/components/learn/command-exercise.tsx`.

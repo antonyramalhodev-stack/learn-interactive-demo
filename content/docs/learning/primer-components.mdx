@@ -1,0 +1,66 @@
+---
+title: Primer components
+description: Buttons, labels, menus, and more from GitHub's component library.
+---
+
+Primer is GitHub's open-source design system. This site uses three Primer packages:
+
+| Package | What it provides |
+| --- | --- |
+| `@primer/react` | React components such as buttons, forms, menus, and labels |
+| `@primer/primitives` | Design tokens: the colors, spacing, and type scale as CSS variables |
+| `@primer/octicons-react` | The Octicons icon set |
+
+## Live components
+
+Every control in this gallery works. Switch the color mode to see the components follow it.
+
+<PrimerShowcase />
+
+## Use a component in your own widget
+
+Import the component in a client component, then register that component in `src/components/mdx.tsx` so your pages can use it.
+
+```tsx title="src/components/learn/star-button.tsx"
+'use client';
+
+import { useState } from 'react';
+import { Button } from '@primer/react';
+import { StarIcon } from '@primer/octicons-react';
+
+export function StarButton() {
+  const [starred, setStarred] = useState(false);
+
+  return (
+    <Button leadingVisual={StarIcon} onClick={() => setStarred(!starred)}>
+      {starred ? 'Starred' : 'Star'}
+    </Button>
+  );
+}
+```
+
+## Use the tokens in CSS
+
+The Primer tokens are CSS variables, so your own styles can use the same colors and spacing as the components.
+
+```css title="src/components/learn/learn.module.css"
+.panel {
+  border: var(--borderWidth-thin) solid var(--borderColor-default);
+  border-radius: var(--borderRadius-medium);
+  background: var(--bgColor-default);
+}
+```
+
+## How the theme works
+
+The file `src/app/global.css` maps the Fumadocs color variables to Primer tokens. The sidebar, the callouts, the search dialog, and the code blocks all pick up the same colors.
+
+```css title="src/app/global.css"
+html:root,
+html.dark {
+  --color-fd-background: var(--bgColor-default);
+  --color-fd-foreground: var(--fgColor-default);
+  --color-fd-border: var(--borderColor-default);
+  --color-fd-primary: var(--fgColor-accent);
+}
+```

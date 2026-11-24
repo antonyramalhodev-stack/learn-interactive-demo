@@ -1,0 +1,111 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-48);
+  width: 100%;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: var(--base-size-48) var(--base-size-16) var(--base-size-32);
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--base-size-16);
+}
+
+.title {
+  margin: 0;
+  max-width: 20ch;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: var(--base-text-weight-semibold);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--fgColor-default);
+}
+
+.accent {
+  color: var(--fgColor-accent);
+}
+
+.lead {
+  margin: 0;
+  max-width: 40rem;
+  color: var(--fgColor-muted);
+  font-size: var(--text-title-size-medium);
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--base-size-12);
+  margin-top: var(--base-size-8);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--base-size-16);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-8);
+  padding: var(--base-size-16);
+  border: var(--borderWidth-thin) solid var(--borderColor-default);
+  border-radius: var(--borderRadius-medium);
+  background: var(--bgColor-default);
+  color: var(--fgColor-default);
+  text-decoration: none;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.card:hover {
+  border-color: var(--borderColor-accent-emphasis);
+  background: var(--bgColor-muted);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--borderColor-accent-emphasis);
+  outline-offset: 2px;
+}
+
+.cardIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--base-size-40);
+  height: var(--base-size-40);
+  border-radius: var(--borderRadius-medium);
+  background: var(--bgColor-accent-muted);
+  color: var(--fgColor-accent);
+}
+
+.cardTitle {
+  font-weight: var(--base-text-weight-semibold);
+}
+
+.cardText {
+  color: var(--fgColor-muted);
+  font-size: var(--text-body-size-medium);
+}
+
+.try {
+  max-width: 44rem;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: var(--text-title-size-medium);
+  font-weight: var(--base-text-weight-semibold);
+}
+
+.footer {
+  padding-top: var(--base-size-16);
+  border-top: var(--borderWidth-thin) solid var(--borderColor-muted);
+  color: var(--fgColor-muted);
+  font-size: var(--text-body-size-small);
+}

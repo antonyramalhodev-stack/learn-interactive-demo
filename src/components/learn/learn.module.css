@@ -1,0 +1,204 @@
+/* Shared styles for the learning widgets. Every value comes from a Primer design token. */
+
+.panel {
+  border: var(--borderWidth-thin) solid var(--borderColor-default);
+  border-radius: var(--borderRadius-medium);
+  background: var(--bgColor-default);
+  overflow: hidden;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-8);
+  padding: var(--base-size-8) var(--base-size-16);
+  background: var(--bgColor-muted);
+  border-bottom: var(--borderWidth-thin) solid var(--borderColor-default);
+  color: var(--fgColor-muted);
+  font-size: var(--text-body-size-small);
+  font-weight: var(--base-text-weight-semibold);
+}
+
+.panelHeaderSpacer {
+  flex: 1;
+}
+
+.panelBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-16);
+  padding: var(--base-size-16);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--base-size-8);
+}
+
+.muted {
+  color: var(--fgColor-muted);
+  font-size: var(--text-body-size-small);
+}
+
+.prompt {
+  margin: 0;
+  font-weight: var(--base-text-weight-semibold);
+  color: var(--fgColor-default);
+}
+
+.hint {
+  margin: 0;
+  padding: var(--base-size-8) var(--base-size-12);
+  border-radius: var(--borderRadius-medium);
+  background: var(--bgColor-attention-muted);
+  color: var(--fgColor-default);
+  font-size: var(--text-body-size-small);
+}
+
+.hint code,
+.feedback code {
+  font-family: var(--fontStack-monospace);
+  font-size: 0.9em;
+}
+
+/* Flashcards */
+
+.cardStage {
+  perspective: 1200px;
+}
+
+.card {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 11rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform var(--base-duration-300, 300ms) ease;
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--borderColor-accent-emphasis);
+  outline-offset: 2px;
+  border-radius: var(--borderRadius-medium);
+}
+
+.cardFlipped {
+  transform: rotateY(180deg);
+}
+
+.cardFace {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--base-size-8);
+  padding: var(--base-size-24);
+  border: var(--borderWidth-thin) solid var(--borderColor-default);
+  border-radius: var(--borderRadius-medium);
+  background: var(--bgColor-muted);
+  text-align: center;
+  backface-visibility: hidden;
+}
+
+.cardBack {
+  background: var(--bgColor-accent-muted);
+  border-color: var(--borderColor-accent-muted);
+  transform: rotateY(180deg);
+}
+
+.cardSide {
+  color: var(--fgColor-muted);
+  font-size: var(--text-body-size-small);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cardText {
+  font-size: var(--text-title-size-small);
+  font-weight: var(--base-text-weight-semibold);
+  line-height: var(--text-title-lineHeight-small);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}
+
+/* Lesson header chips */
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--base-size-8);
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--base-size-4);
+  padding: var(--base-size-4) var(--base-size-8);
+  border: var(--borderWidth-thin) solid var(--borderColor-default);
+  border-radius: var(--borderRadius-full);
+  color: var(--fgColor-muted);
+  font-size: var(--text-body-size-small);
+}
+
+/* Component gallery */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--base-size-16);
+}
+
+.galleryItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-12);
+  padding: var(--base-size-16);
+  border: var(--borderWidth-thin) solid var(--borderColor-default);
+  border-radius: var(--borderRadius-medium);
+  background: var(--bgColor-default);
+}
+
+.galleryTitle {
+  margin: 0;
+  color: var(--fgColor-muted);
+  font-size: var(--text-body-size-small);
+  font-weight: var(--base-text-weight-semibold);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--base-size-8);
+}
+
+/* Mermaid diagrams */
+
+.diagram {
+  display: flex;
+  justify-content: center;
+  padding: var(--base-size-16);
+  border: var(--borderWidth-thin) solid var(--borderColor-default);
+  border-radius: var(--borderRadius-medium);
+  background: var(--bgColor-default);
+  overflow-x: auto;
+}
+
+.diagram svg {
+  max-width: 100%;
+  height: auto;
+}

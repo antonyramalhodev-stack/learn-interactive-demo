@@ -1,0 +1,78 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+/* Primer design tokens: sizes, type scale, and the light and dark color themes. */
+@import '@primer/primitives/dist/css/primitives.css';
+@import '@primer/primitives/dist/css/functional/themes/light.css';
+@import '@primer/primitives/dist/css/functional/themes/dark.css';
+
+/* GitHub's corner radius (6px) for the Fumadocs and Tailwind components. */
+@theme {
+  --radius-md: 0.375rem;
+  --radius-lg: 0.375rem;
+  --radius-xl: 0.375rem;
+  --radius-2xl: 0.75rem;
+  --font-sans: 'Mona Sans Variable', 'Mona Sans VF', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono',
+    monospace;
+}
+
+/*
+ * Map the Fumadocs color variables to Primer tokens.
+ * The Primer tokens change with data-color-mode, so one mapping covers light and dark.
+ */
+html:root,
+html.dark,
+html.dark #nd-sidebar {
+  --color-fd-background: var(--bgColor-default);
+  --color-fd-foreground: var(--fgColor-default);
+  --color-fd-muted: var(--bgColor-muted);
+  --color-fd-muted-foreground: var(--fgColor-muted);
+  --color-fd-popover: var(--overlay-bgColor);
+  --color-fd-popover-foreground: var(--fgColor-default);
+  --color-fd-card: var(--bgColor-muted);
+  --color-fd-card-foreground: var(--fgColor-default);
+  --color-fd-border: var(--borderColor-default);
+  --color-fd-primary: var(--fgColor-accent);
+  --color-fd-primary-foreground: var(--bgColor-default);
+  --color-fd-secondary: var(--bgColor-muted);
+  --color-fd-secondary-foreground: var(--fgColor-default);
+  --color-fd-accent: var(--control-transparent-bgColor-hover);
+  --color-fd-accent-foreground: var(--fgColor-default);
+  --color-fd-ring: var(--borderColor-accent-emphasis);
+  --color-fd-overlay: var(--overlay-backdrop-bgColor);
+  --color-fd-info: var(--fgColor-accent);
+  --color-fd-warning: var(--fgColor-attention);
+  --color-fd-error: var(--fgColor-danger);
+  --color-fd-success: var(--fgColor-success);
+  --color-fd-idea: var(--fgColor-done);
+
+  /* Point Primer's font stack at the bundled Mona Sans file. */
+  --fontStack-system: var(--font-sans);
+  --fontStack-sansSerif: var(--font-sans);
+  --fontStack-sansSerifDisplay: var(--font-sans);
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bgColor-default);
+  color: var(--fgColor-default);
+}
+
+html > body[data-scroll-locked] {
+  margin-right: 0px !important;
+  --removed-body-scroll-bar-size: 0px !important;
+}
+
+/* The Fumadocs typography styles stop at this wrapper, so Primer components keep their own look. */
+.learn-widget {
+  margin-block: 1.5rem;
+  font-size: var(--text-body-size-medium);
+  line-height: var(--text-body-lineHeight-medium);
+}

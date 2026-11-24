@@ -1,0 +1,115 @@
+---
+title: Steps, callouts, and accordions
+description: Structure a procedure, flag what matters, and hide optional detail.
+---
+
+## Steps
+
+Steps number themselves and draw a line that connects them. Use them for any procedure.
+
+<Steps>
+<Step>
+
+### Fork the repository
+
+Create your own copy of the repository so you can change it freely.
+
+</Step>
+<Step>
+
+### Clone your fork
+
+Download the fork to your computer.
+
+```bash
+git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
+```
+
+</Step>
+<Step>
+
+### Make a change
+
+Create a branch, edit a file, and commit.
+
+</Step>
+</Steps>
+
+How you write it:
+
+````mdx
+<Steps>
+<Step>
+
+### Fork the repository
+
+Create your own copy of the repository so you can change it freely.
+
+</Step>
+<Step>
+
+### Clone your fork
+
+Download the fork to your computer.
+
+</Step>
+</Steps>
+````
+
+## Callouts
+
+Callouts come in five types. The colors come from the Primer tokens.
+
+<Callout title="Note">Use `info` (the default) for extra context.</Callout>
+
+<Callout title="Tip" type="idea">
+  Use `idea` for a shortcut or a better way to do the task.
+</Callout>
+
+<Callout title="Success" type="success">
+  Use `success` to confirm a result the learner can expect.
+</Callout>
+
+<Callout title="Warning" type="warn">
+  Use `warn` when a step can cause a problem.
+</Callout>
+
+<Callout title="Caution" type="error">
+  Use `error` when a step can cause data loss.
+</Callout>
+
+How you write it:
+
+```mdx
+<Callout title="Warning" type="warn">
+  Use `warn` when a step can cause a problem.
+</Callout>
+```
+
+## Accordions
+
+Accordions hide optional detail until the reader asks for it. They work well for common questions and troubleshooting.
+
+<Accordions>
+  <Accordion title="What is a fork?">
+    A fork is your own copy of someone else's repository. You can change it without affecting
+    the original.
+  </Accordion>
+  <Accordion title="What is a clone?">
+    A clone is a copy of a repository on your computer.
+  </Accordion>
+  <Accordion title="Can I link to one accordion?" id="link-to-an-accordion">
+    Yes. Give the accordion an `id`. A copy link button appears next to the title, and the
+    accordion opens when a reader follows that link.
+  </Accordion>
+</Accordions>
+
+How you write it:
+
+```mdx
+<Accordions>
+  <Accordion title="What is a fork?">
+    A fork is your own copy of someone else's repository.
+  </Accordion>
+</Accordions>
+```

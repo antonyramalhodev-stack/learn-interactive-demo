@@ -1,0 +1,158 @@
+---
+title: How this site works
+description: The project layout, how you add an element to a page, and how the site deploys to GitHub Pages.
+---
+
+## The pieces
+
+| Piece | Role |
+| --- | --- |
+| [Fumadocs](https://fumadocs.dev) | The docs framework: layout, sidebar, search, and the built-in MDX components |
+| [Primer](https://primer.style) | GitHub's design system: the colors, the icons, and the components in the learning widgets |
+| [Next.js](https://nextjs.org) static export | Turns the project into plain HTML, CSS, and JavaScript files |
+| GitHub Pages | Hosts those files |
+| GitHub Actions | Builds and deploys the site on every push to `main` |
+
+## Project layout
+
+<Files>
+  <Folder name=".github" defaultOpen>
+    <Folder name="workflows" defaultOpen>
+      <File name="deploy.yml" />
+    </Folder>
+  </Folder>
+  <Folder name="content" defaultOpen>
+    <Folder name="docs" defaultOpen>
+      <File name="index.mdx" />
+      <File name="meta.json" />
+      <Folder name="lesson" />
+      <Folder name="built-in" />
+      <Folder name="learning" />
+    </Folder>
+  </Folder>
+  <Folder name="src" defaultOpen>
+    <Folder name="app">
+      <File name="global.css" />
+      <File name="layout.tsx" />
+    </Folder>
+    <Folder name="components" defaultOpen>
+      <File name="mdx.tsx" />
+      <Folder name="learn" defaultOpen>
+        <File name="quiz.tsx" />
+        <File name="checklist.tsx" />
+        <File name="flashcards.tsx" />
+        <File name="command-exercise.tsx" />
+        <File name="mermaid.tsx" />
+      </Folder>
+    </Folder>
+  </Folder>
+  <File name="next.config.mjs" />
+</Files>
+
+- **`content/docs`** holds the pages. Each `.mdx` file is a page, and each `meta.json` file sets the order of the sidebar.
+- **`src/components/learn`** holds the learning widgets.
+- **`src/components/mdx.tsx`** lists the components that pages can use without an import.
+- **`src/app/global.css`** maps the site colors to the Primer tokens.
+
+## Add an element to a page
+
+<Steps>
+<Step>
+
+### Create or open a page
+
+Add an `.mdx` file in `content/docs`. Start it with a title and a description.
+
+```mdx title="content/docs/lesson/my-lesson.mdx"
+---
+title: My lesson
+description: What the learner gets from this lesson.
+---
+```
+
+</Step>
+<Step>
+
+### Add the element
+
+Write the component where you want it to appear.
+
+```mdx
+<Quiz
+  question="Which branch does a new repository start with?"
+  options={[
+    { label: 'The default branch', correct: true },
+    { label: 'A feature branch' },
+  ]}
+/>
+```
+
+</Step>
+<Step>
+
+### Add the page to the sidebar
+
+List the file name in the `meta.json` file of the same folder.
+
+```json title="content/docs/lesson/meta.json"
+{
+  "title": "Sample lesson",
+  "pages": ["first-pull-request", "my-lesson"]
+}
+```
+
+</Step>
+</Steps>
+
+## Run the site on your computer
+
+```npm
+npm install
+```
+
+```bash
+npm run dev
+```
+
+Then open `http://localhost:3000`.
+
+## Deploy to GitHub Pages
+
+The workflow in `.github/workflows/deploy.yml` builds the site and deploys it. You enable GitHub Pages once for the repository.
+
+<Steps>
+<Step>
+
+### Set the publishing source
+
+In the repository, select **Settings**, then **Pages**. Under **Build and deployment**, under **Source**, select **GitHub Actions**.
+
+</Step>
+<Step>
+
+### Push to main
+
+Every push to `main` starts the workflow. You can also start it by hand from the **Actions** tab.
+
+</Step>
+<Step>
+
+### Open the site
+
+When the workflow finishes, the deploy job shows the site URL. A project site uses the address `https://OWNER.github.io/REPOSITORY/`.
+
+</Step>
+</Steps>
+
+<Callout title="The repository name becomes part of the URL">
+  The workflow reads the path from the GitHub Pages settings and passes it to the build, so
+  links, search, and assets work under `/REPOSITORY`. You don't set it by hand.
+</Callout>
+
+## What a static site can't do
+
+A static site has no server code. Plan around these limits:
+
+- **No API routes.** Anything that needs a secret key or a database needs an outside service.
+- **No shared progress.** Checklists save to the learner's browser only.
+- **No server-side search.** Search downloads a static index and runs in the browser. This works well for small and medium sites.

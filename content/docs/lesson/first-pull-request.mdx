@@ -1,0 +1,158 @@
+---
+title: Create a branch and open a pull request
+description: A sample lesson that uses the interactive elements together.
+---
+
+<LessonMeta duration="10 minutes" level="Beginner" requires="Git and a GitHub repository" />
+
+<Callout title="Sample content">
+  This lesson exists to show the components. Use it as a pattern for your own modules.
+</Callout>
+
+## What you'll learn
+
+By the end of this lesson, you'll be able to:
+
+- Create a branch for your work.
+- Commit a change and push the branch.
+- Open a pull request for review.
+
+## How the flow works
+
+You make changes on a branch, then you propose them with a pull request. After review, a maintainer merges the pull request into the default branch.
+
+<Mermaid
+  label="Flow from the main branch to a new branch, a commit, a push, a pull request, and a merge"
+  chart={`flowchart LR
+  A[main branch] --> B[Create a branch]
+  B --> C[Commit changes]
+  C --> D[Push the branch]
+  D --> E[Open a pull request]
+  E --> F[Review and merge]`}
+/>
+
+## Follow the steps
+
+<Steps>
+<Step>
+
+### Create a branch
+
+Create a branch named `update-readme` and switch to it.
+
+```bash tab="git switch"
+git switch -c update-readme
+```
+
+```bash tab="git checkout"
+git checkout -b update-readme
+```
+
+</Step>
+<Step>
+
+### Commit a change
+
+Edit `README.md`, then stage and commit the change.
+
+```bash
+git add README.md
+git commit -m "Update README"
+```
+
+</Step>
+<Step>
+
+### Push the branch
+
+Push the branch to GitHub. The `-u` option sets the upstream branch, so later you can run `git push` with no arguments.
+
+```bash
+git push -u origin update-readme
+```
+
+</Step>
+<Step>
+
+### Open a pull request
+
+<Tabs items={['GitHub CLI', 'Browser']}>
+  <Tab value="GitHub CLI">
+    Run this command in the repository folder. The `--fill` option uses your commit message for the title and description.
+
+    ```bash
+    gh pr create --fill
+    ```
+
+  </Tab>
+  <Tab value="Browser">
+    Go to the repository on GitHub and open a pull request for the `update-readme` branch.
+  </Tab>
+</Tabs>
+
+</Step>
+</Steps>
+
+## Practice
+
+<CommandExercise
+  prompt="Create a branch named fix-typo and switch to it."
+  answers={['git switch -c fix-typo', 'git checkout -b fix-typo']}
+  hint="Use git switch with the -c option, followed by the branch name."
+  placeholder="git ..."
+/>
+
+## Check your knowledge
+
+<Quiz
+  question="What does git push -u origin update-readme do?"
+  options={[
+    {
+      label: 'It merges update-readme into the default branch.',
+      feedback: 'A push uploads commits. The merge happens later, through the pull request.',
+    },
+    {
+      label: 'It uploads the branch and sets it as the upstream branch.',
+      correct: true,
+      feedback:
+        'The -u option links your local branch to the remote branch, so later pushes need no arguments.',
+    },
+    {
+      label: 'It deletes the update-readme branch on GitHub.',
+      feedback: 'This command uploads the branch. It does not delete anything.',
+    },
+  ]}
+/>
+
+## Review the terms
+
+<Flashcards
+  cards={[
+    { front: 'Branch', back: 'A separate line of work in a repository.' },
+    { front: 'Commit', back: 'A saved snapshot of your changes, with a message.' },
+    { front: 'Upstream branch', back: 'The remote branch that your local branch tracks.' },
+    {
+      front: 'Pull request',
+      back: 'A proposal to merge the changes from one branch into another.',
+    },
+  ]}
+/>
+
+## Common questions
+
+<Accordions>
+  <Accordion title="What if git switch is not available?">
+    Git added `git switch` in version 2.23. On an earlier version, use `git checkout -b` instead.
+  </Accordion>
+  <Accordion title="Do I need the GitHub CLI?">
+    No. The GitHub CLI is one way to open a pull request. You can also open one in the browser.
+  </Accordion>
+</Accordions>
+
+## Track your progress
+
+<Checklist
+  id="first-pull-request"
+  title="Lesson tasks"
+  items={['Create a branch', 'Commit a change', 'Push the branch', 'Open a pull request']}
+/>

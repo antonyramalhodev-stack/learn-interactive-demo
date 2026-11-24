@@ -1,0 +1,62 @@
+---
+title: Knowledge check
+description: A single-choice question with feedback for each answer.
+---
+
+The `Quiz` component asks one question. The learner picks an answer and selects **Check answer**. Each option can carry its own feedback, so a wrong answer still teaches something.
+
+## Try it
+
+<Quiz
+  question="Which file format do the pages of this site use?"
+  options={[
+    {
+      label: 'MDX',
+      correct: true,
+      feedback: 'Each page is an .mdx file: Markdown that can also render components.',
+    },
+    {
+      label: 'YAML',
+      feedback: 'YAML appears in the front matter and the workflow file. The page content is MDX.',
+    },
+    {
+      label: 'HTML',
+      feedback: 'The build produces HTML, but you write the pages in MDX.',
+    },
+  ]}
+/>
+
+## How you write it
+
+```mdx
+<Quiz
+  question="Which file format do the pages of this site use?"
+  options={[
+    { label: 'MDX', correct: true, feedback: 'Each page is an .mdx file.' },
+    { label: 'YAML', feedback: 'The page content is MDX.' },
+    { label: 'HTML', feedback: 'You write the pages in MDX.' },
+  ]}
+/>
+```
+
+## Properties
+
+<TypeTable
+  type={{
+    question: {
+      description: 'The question the learner answers.',
+      type: 'string',
+      required: true,
+    },
+    options: {
+      description: 'The answers. Mark one with correct: true.',
+      type: 'QuizOption[]',
+      typeDescription: '{ label: string; correct?: boolean; feedback?: string }[]',
+      required: true,
+    },
+  }}
+/>
+
+## What it uses
+
+The component uses `RadioGroup`, `Radio`, `FormControl`, `Button`, and `Banner` from Primer React. The source is in `src/components/learn/quiz.tsx`.
