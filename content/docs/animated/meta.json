@@ -3,6 +3,7 @@
   "pages": [
     "terminal",
     "git-graph",
+    "timeline",
     "code-tour",
     "workflow-run"
   ]

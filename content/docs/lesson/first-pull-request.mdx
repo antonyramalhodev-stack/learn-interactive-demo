@@ -94,6 +94,28 @@ git push -u origin update-readme
 </Step>
 </Steps>
 
+## What happens next
+
+After you open the pull request, the review starts.
+
+<Timeline
+  events={[
+    { icon: 'pull-request', color: 'success', title: 'You open the pull request' },
+    {
+      icon: 'review',
+      color: 'accent',
+      title: 'A reviewer reads the change',
+      text: 'The reviewer can comment, approve, or request changes.',
+    },
+    {
+      icon: 'commit',
+      title: 'You push more commits',
+      text: 'New commits on the branch show up in the same pull request.',
+    },
+    { icon: 'merge', color: 'done', title: 'A maintainer merges the pull request' },
+  ]}
+/>
+
 ## Watch the whole flow
 
 <Terminal

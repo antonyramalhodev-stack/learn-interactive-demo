@@ -1,0 +1,82 @@
+---
+title: Timeline
+description: A sequence of events that appear one after another.
+---
+
+The `Timeline` component shows what happens, in order. It uses the Primer Timeline component, so the badges and the connecting line match GitHub. The events appear one after another when the reader scrolls to the timeline.
+
+## Try it
+
+<Timeline
+  events={[
+    { icon: 'commit', title: 'You commit a change on a branch' },
+    { icon: 'pull-request', color: 'success', title: 'You open a pull request' },
+    {
+      icon: 'review',
+      color: 'accent',
+      title: 'A reviewer reads the change',
+      text: 'The reviewer can comment, approve, or request changes.',
+    },
+    { icon: 'merge', color: 'done', title: 'A maintainer merges the pull request' },
+  ]}
+/>
+
+## How you write it
+
+```mdx
+<Timeline
+  events={[
+    { icon: 'commit', title: 'You commit a change on a branch' },
+    { icon: 'pull-request', color: 'success', title: 'You open a pull request' },
+    {
+      icon: 'review',
+      color: 'accent',
+      title: 'A reviewer reads the change',
+      text: 'The reviewer can comment, approve, or request changes.',
+    },
+    { icon: 'merge', color: 'done', title: 'A maintainer merges the pull request' },
+  ]}
+/>
+```
+
+## Properties
+
+<TypeTable
+  type={{
+    events: {
+      description: 'The events, in order.',
+      type: 'TimelineEvent[]',
+      typeDescription: '{ title: string; text?: string; icon?: string; color?: string }[]',
+      required: true,
+    },
+  }}
+/>
+
+Each event takes these values:
+
+<TypeTable
+  type={{
+    title: {
+      description: 'The event.',
+      type: 'string',
+      required: true,
+    },
+    text: {
+      description: 'Optional detail under the title.',
+      type: 'string',
+    },
+    icon: {
+      description: 'The Octicon in the badge.',
+      type: "'dot' | 'commit' | 'branch' | 'pull-request' | 'merge' | 'review' | 'comment' | 'issue' | 'check' | 'workflow' | 'tag' | 'rocket'",
+      default: "'dot'",
+    },
+    color: {
+      description: 'The badge color, from Primer.',
+      type: "'accent' | 'success' | 'attention' | 'severe' | 'danger' | 'done'",
+    },
+  }}
+/>
+
+## Motion and accessibility
+
+The timeline is a list, so a screen reader reads the events in order. With reduced motion, every event shows at once.

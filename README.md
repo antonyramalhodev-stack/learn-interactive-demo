@@ -17,6 +17,7 @@ Each one plays when the reader scrolls to it and shows its end state when the re
 | --- | --- | --- |
 | `Terminal` | A terminal session that types itself | `src/components/motion/terminal.tsx` |
 | `GitGraph` | A commit graph that draws itself one step at a time | `src/components/motion/git-graph.tsx` |
+| `Timeline` | A sequence of events that appear one after another | `src/components/motion/timeline.tsx` |
 | `CodeTour` | A highlight that walks through a code sample | `src/components/motion/code-tour.tsx` |
 | `WorkflowRun` | Jobs and steps that run in order | `src/components/motion/workflow-run.tsx` |
 | `Mermaid` | A diagram from text that uses the Primer colors | `src/components/learn/mermaid.tsx` |

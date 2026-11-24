@@ -11,7 +11,7 @@ import {
   RocketIcon,
 } from '@primer/octicons-react';
 import { Checklist, CommandExercise, Flashcards, Quiz } from '../learn';
-import { CodeTour, GitGraph, Terminal, WorkflowRun } from '../motion';
+import { CodeTour, GitGraph, Terminal, Timeline, WorkflowRun } from '../motion';
 import type { GitEvent } from '../motion/git-graph';
 import styles from './home.module.css';
 
@@ -138,6 +138,14 @@ export function Home({ repoUrl }: { repoUrl: string }) {
           />
           <CodeTour title="lesson.mdx" code={tourCode} steps={tourSteps} autoPlay />
         </div>
+        <Timeline
+          events={[
+            { icon: 'commit', title: 'You commit a change on a branch' },
+            { icon: 'pull-request', color: 'success', title: 'You open a pull request' },
+            { icon: 'review', color: 'accent', title: 'A reviewer reads the change and comments' },
+            { icon: 'merge', color: 'done', title: 'A maintainer merges the pull request' },
+          ]}
+        />
         <WorkflowRun
           title="Deploy to GitHub Pages"
           trigger="git push origin main"

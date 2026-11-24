@@ -13,7 +13,7 @@ import {
   Mermaid,
   Quiz,
 } from '@/components/learn';
-import { CodeTour, GitGraph, Terminal, WorkflowRun } from '@/components/motion';
+import { CodeTour, GitGraph, Terminal, Timeline, WorkflowRun } from '@/components/motion';
 
 /**
  * Every component in this map works in any .mdx file without an import.
@@ -43,6 +43,7 @@ export function getMDXComponents(components?: MDXComponents) {
     CodeTour,
     GitGraph,
     Terminal,
+    Timeline,
     WorkflowRun,
     ...components,
   } satisfies MDXComponents;
