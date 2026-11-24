@@ -33,6 +33,7 @@ import {
 } from '../motion';
 import { useLoopStep, useReducedMotion } from '../motion/hooks';
 import type { GitEvent } from '../motion/git-graph';
+import { Mascot } from '../mascot/mascot';
 import styles from './home.module.css';
 
 const sections = [
@@ -264,6 +265,11 @@ export function Home({ repoUrl }: { repoUrl: string }) {
           <CloneCommand repoUrl={repoUrl} />
         </div>
         <div className={styles.heroScene}>
+          <Mascot size="large" mood={heroStep >= 4 ? 'cheer' : heroStep >= 3 ? 'thinking' : 'idle'}>
+            <span key={heroStep} className={styles.say}>
+              {heroEvents[heroStep].label}
+            </span>
+          </Mascot>
           <GitGraph
             title="update-readme"
             events={heroEvents}

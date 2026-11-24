@@ -34,6 +34,7 @@ Each one plays when the reader scrolls to it and shows its end state when the re
 
 | Component | What it does | Source |
 | --- | --- | --- |
+| `Mascot` | A guide character with moods, motion, and a speech bubble. The art is a slot you fill in `src/lib/mascot.ts` | `src/components/mascot/mascot.tsx` |
 | `Terminal` | A terminal session that types itself | `src/components/motion/terminal.tsx` |
 | `GitGraph` | A commit graph that draws itself one step at a time | `src/components/motion/git-graph.tsx` |
 | `CodeTour` | A highlight that walks through a code sample | `src/components/motion/code-tour.tsx` |

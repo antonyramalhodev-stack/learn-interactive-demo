@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from 'react';
 import { Button, FormControl, TextInput } from '@primer/react';
 import { LightBulbIcon, TerminalIcon } from '@primer/octicons-react';
+import { Mascot } from '../mascot/mascot';
 import styles from './learn.module.css';
 
 export interface CommandExerciseProps {
@@ -73,9 +74,9 @@ export function CommandExercise({
         </FormControl>
 
         {showHint && hint ? (
-          <p className={styles.hint}>
+          <Mascot size="small" mood="thinking">
             <strong>Hint:</strong> {hint}
-          </p>
+          </Mascot>
         ) : null}
 
         <div className={styles.actions}>

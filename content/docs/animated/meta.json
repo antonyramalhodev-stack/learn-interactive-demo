@@ -1,4 +1,11 @@
 {
   "title": "Animated elements",
-  "pages": ["terminal", "git-graph", "code-tour", "workflow-run", "themes-and-layers"]
+  "pages": [
+    "mascot",
+    "terminal",
+    "git-graph",
+    "code-tour",
+    "workflow-run",
+    "themes-and-layers"
+  ]
 }

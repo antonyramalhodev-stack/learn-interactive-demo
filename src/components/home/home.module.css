@@ -54,6 +54,12 @@
   gap: var(--base-size-12);
 }
 
+.say {
+  display: inline-block;
+  font-weight: var(--base-text-weight-semibold);
+  animation: wordIn 360ms ease both;
+}
+
 .pr {
   display: grid;
   gap: var(--base-size-8);
@@ -329,6 +335,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .wordNow,
+  .say,
   .prState,
   .sky i {
     animation: none;

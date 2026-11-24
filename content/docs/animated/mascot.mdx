@@ -1,0 +1,109 @@
+---
+title: Mascot guide
+description: A reusable character with moods, motion, and a speech bubble.
+---
+
+The `Mascot` component is the guide character for the site. You set the art in one file, and every element that uses the guide picks it up: the hero, the quiz feedback, the hint in the command exercise, and the checklist.
+
+<Callout title="The art is a slot" type="warn">
+  This demo ships with placeholder icons and no mascot art. Add only art you have the rights to
+  use. For GitHub's mascots, public use needs approval from GitHub's Brand & Marketing Design
+  team.
+</Callout>
+
+## Try the moods
+
+Each mood has its own motion. Idle floats, thinking tilts, cheer jumps with a burst, and oops shakes.
+
+<MascotPlayground />
+
+## Add your art
+
+<Steps>
+<Step>
+
+### Add one image for each mood
+
+Put the files in `public/mascot/`. Use a square canvas with a transparent background, and keep the same size for every mood.
+
+<Files>
+  <Folder name="public" defaultOpen>
+    <Folder name="mascot" defaultOpen>
+      <File name="idle.svg" />
+      <File name="thinking.svg" />
+      <File name="cheer.svg" />
+      <File name="oops.svg" />
+    </Folder>
+  </Folder>
+</Files>
+
+</Step>
+<Step>
+
+### Set the paths
+
+```ts title="src/lib/mascot.ts"
+export const mascot = {
+  name: 'Guide',
+  art: {
+    idle: '/mascot/idle.svg',
+    thinking: '/mascot/thinking.svg',
+    cheer: '/mascot/cheer.svg',
+    oops: '/mascot/oops.svg',
+  },
+};
+```
+
+A mood with no path uses the idle art. If idle has no path, the placeholder icon shows.
+
+</Step>
+</Steps>
+
+The slot is an image, so SVG, PNG, WebP, and GIF files all work. An animated file plays inside the slot, and the mood motion moves the whole image.
+
+## Use it in a lesson
+
+Write the tag with a mood. The text inside the tag goes in the speech bubble.
+
+<Mascot mood="thinking">Tip: commit small changes. A small commit is easier to review.</Mascot>
+
+```mdx
+<Mascot mood="thinking">Tip: commit small changes. A small commit is easier to review.</Mascot>
+```
+
+## Where the guide appears
+
+- **Home page.** The guide narrates the commit graph and cheers at the merge.
+- **Knowledge check.** The guide cheers for a correct answer and shakes for a wrong one.
+- **Command exercise.** The guide gives the hint.
+- **Progress checklist.** The guide cheers when every task is done.
+
+## Properties
+
+<TypeTable
+  type={{
+    mood: {
+      description: 'The mood picks the art and the motion.',
+      type: "'idle' | 'thinking' | 'cheer' | 'oops'",
+      default: "'idle'",
+    },
+    size: {
+      description: 'The size of the figure.',
+      type: "'small' | 'medium' | 'large'",
+      default: "'medium'",
+    },
+    children: {
+      description: 'The text in the speech bubble. Leave it out to show the figure alone.',
+      type: 'ReactNode',
+    },
+    stacked: {
+      description: 'Put the bubble above the figure instead of beside it.',
+      type: 'boolean',
+      default: 'false',
+    },
+  }}
+/>
+
+## Motion and accessibility
+
+The image is decoration, so it has an empty text alternative. The speech bubble carries the message. With reduced motion, the figure and the bubble appear with no animation.
