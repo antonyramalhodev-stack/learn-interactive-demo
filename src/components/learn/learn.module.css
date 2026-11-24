@@ -81,23 +81,6 @@
   }
 }
 
-/* The guide stands beside the feedback. */
-.react {
-  display: flex;
-  align-items: center;
-  gap: var(--base-size-12);
-}
-
-.react :global(.learn-widget),
-.panelBody :global(.learn-widget) {
-  margin-block: 0;
-}
-
-.reactBody {
-  flex: 1;
-  min-width: 0;
-}
-
 /* Flashcards */
 
 .cardStage {

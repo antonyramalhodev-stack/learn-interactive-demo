@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { Button, Checkbox, CheckboxGroup, FormControl, Label, ProgressBar } from '@primer/react';
 import { TasklistIcon } from '@primer/octicons-react';
-import { Mascot } from '../mascot/mascot';
 import styles from './learn.module.css';
 
 export interface ChecklistProps {
@@ -91,11 +90,6 @@ export function Checklist({ id, title = 'Track your progress', items }: Checklis
             </FormControl>
           ))}
         </CheckboxGroup>
-        {complete ? (
-          <Mascot size="small" mood="cheer">
-            Every task is done. Nice work.
-          </Mascot>
-        ) : null}
         <div className={styles.actions}>
           <Button variant="invisible" size="small" disabled={done.length === 0} onClick={() => update([])}>
             Reset progress

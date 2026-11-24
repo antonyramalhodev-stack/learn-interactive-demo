@@ -22,7 +22,6 @@ import {
   ThemePlayground,
   WorkflowRun,
 } from '@/components/motion';
-import { Mascot, MascotPlayground } from '@/components/mascot/mascot';
 
 /**
  * Every component in this map works in any .mdx file without an import.
@@ -49,9 +48,6 @@ export function getMDXComponents(components?: MDXComponents) {
     Mermaid,
     PrimerShowcase,
     Quiz,
-    // The guide character
-    Mascot,
-    MascotPlayground,
     // Animated elements
     CodeTour,
     GitGraph,

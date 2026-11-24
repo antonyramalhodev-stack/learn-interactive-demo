@@ -3,7 +3,6 @@
 import { useId, useState } from 'react';
 import { Banner, Button, FormControl, Radio, RadioGroup } from '@primer/react';
 import { ChecklistIcon } from '@primer/octicons-react';
-import { Mascot } from '../mascot/mascot';
 import styles from './learn.module.css';
 
 export interface QuizOption {
@@ -56,10 +55,8 @@ export function Quiz({ question, options }: QuizProps) {
         </RadioGroup>
 
         {checked && choice ? (
-          <div key={selected} className={`${styles.pop} ${styles.react}`}>
-            <Mascot size="small" mood={isCorrect ? 'cheer' : 'oops'} />
+          <div key={selected} className={styles.pop}>
             <Banner
-              className={styles.reactBody}
               variant={isCorrect ? 'success' : 'critical'}
               title={isCorrect ? 'Correct' : 'Not quite'}
               description={choice.feedback}
