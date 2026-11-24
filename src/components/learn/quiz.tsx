@@ -55,12 +55,13 @@ export function Quiz({ question, options }: QuizProps) {
         </RadioGroup>
 
         {checked && choice ? (
-          <Banner
-            className={styles.feedback}
-            variant={isCorrect ? 'success' : 'critical'}
-            title={isCorrect ? 'Correct' : 'Not quite'}
-            description={choice.feedback}
-          />
+          <div key={selected} className={styles.pop}>
+            <Banner
+              variant={isCorrect ? 'success' : 'critical'}
+              title={isCorrect ? 'Correct' : 'Not quite'}
+              description={choice.feedback}
+            />
+          </div>
         ) : null}
 
         <div className={styles.actions}>

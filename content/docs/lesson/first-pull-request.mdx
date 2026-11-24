@@ -21,14 +21,15 @@ By the end of this lesson, you'll be able to:
 
 You make changes on a branch, then you propose them with a pull request. After review, a maintainer merges the pull request into the default branch.
 
-<Mermaid
-  label="Flow from the main branch to a new branch, a commit, a push, a pull request, and a merge"
-  chart={`flowchart LR
-  A[main branch] --> B[Create a branch]
-  B --> C[Commit changes]
-  C --> D[Push the branch]
-  D --> E[Open a pull request]
-  E --> F[Review and merge]`}
+<GitGraph
+  title="From branch to merge"
+  events={[
+    { type: 'commit', branch: 'main', label: 'Start from the default branch' },
+    { type: 'branch', branch: 'update-readme', from: 'main', label: 'Create a branch' },
+    { type: 'commit', branch: 'update-readme', label: 'Commit a change' },
+    { type: 'commit', branch: 'update-readme', label: 'Push the branch and open a pull request' },
+    { type: 'merge', branch: 'update-readme', into: 'main', label: 'Merge the pull request' },
+  ]}
 />
 
 ## Follow the steps
@@ -92,6 +93,20 @@ git push -u origin update-readme
 
 </Step>
 </Steps>
+
+## Watch the whole flow
+
+<Terminal
+  title="The commands in order"
+  lines={[
+    { text: 'git switch -c update-readme' },
+    { type: 'output', text: "Switched to a new branch 'update-readme'" },
+    { text: 'git add README.md' },
+    { text: 'git commit -m "Update README"' },
+    { text: 'git push -u origin update-readme' },
+    { text: 'gh pr create --fill' },
+  ]}
+/>
 
 ## Practice
 

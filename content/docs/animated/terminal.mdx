@@ -1,0 +1,68 @@
+---
+title: Terminal
+description: A terminal session that types itself when the reader scrolls to it.
+---
+
+The `Terminal` component plays back a list of lines. Commands type out one character at a time, and output appears at once. Nothing runs, so the component is safe on a static site.
+
+## Try it
+
+Select the replay button in the title bar to watch it again. The copy button copies the commands only.
+
+<Terminal
+  title="Create a branch"
+  lines={[
+    { text: 'git switch -c update-readme' },
+    { type: 'output', text: "Switched to a new branch 'update-readme'" },
+    { text: 'git add README.md' },
+    { text: 'git commit -m "Update README"' },
+    { type: 'comment', text: '# Push the branch and set its upstream' },
+    { text: 'git push -u origin update-readme' },
+  ]}
+/>
+
+## How you write it
+
+```mdx
+<Terminal
+  title="Create a branch"
+  lines={[
+    { text: 'git switch -c update-readme' },
+    { type: 'output', text: "Switched to a new branch 'update-readme'" },
+    { type: 'comment', text: '# Push the branch and set its upstream' },
+    { text: 'git push -u origin update-readme' },
+  ]}
+/>
+```
+
+## Properties
+
+<TypeTable
+  type={{
+    lines: {
+      description: 'The lines to play. A line with no type is a command.',
+      type: 'TerminalLine[]',
+      typeDescription: "{ type?: 'command' | 'output' | 'comment'; text: string }[]",
+      required: true,
+    },
+    title: {
+      description: 'The text in the title bar.',
+      type: 'string',
+      default: "'Terminal'",
+    },
+    loop: {
+      description: 'Start again a few seconds after the last line.',
+      type: 'boolean',
+      default: 'false',
+    },
+    speed: {
+      description: 'Milliseconds for each typed character.',
+      type: 'number',
+      default: '32',
+    },
+  }}
+/>
+
+## Motion and accessibility
+
+The session starts when the terminal scrolls into view. When the reader's system asks for reduced motion, every line shows at once with no typing.

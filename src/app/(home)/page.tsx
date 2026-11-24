@@ -1,5 +1,6 @@
-import { HomeHero } from '@/components/home-hero';
+import { Home } from '@/components/home/home';
+import { gitConfig } from '@/lib/shared';
 
 export default function HomePage() {
-  return <HomeHero />;
+  return <Home repoUrl={`https://github.com/${gitConfig.user}/${gitConfig.repo}`} />;
 }

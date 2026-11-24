@@ -1,0 +1,341 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-80, 5rem);
+  width: 100%;
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: var(--base-size-40) var(--base-size-16) 6rem;
+}
+
+.page :global(.learn-widget) {
+  margin-block: 0;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-24);
+  scroll-margin-top: 5rem;
+}
+
+/* Hero */
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: var(--base-size-32);
+  align-items: center;
+  min-height: min(34rem, 80vh);
+}
+
+.heroCopy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--base-size-16);
+}
+
+.heroScene {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-12);
+}
+
+.pr {
+  display: grid;
+  gap: var(--base-size-8);
+  width: min(100%, 19rem);
+  margin-left: auto;
+  padding: var(--base-size-12);
+  border: var(--borderWidth-thin) solid var(--borderColor-default);
+  border-radius: var(--borderRadius-medium);
+  background: var(--bgColor-default);
+  box-shadow: var(--shadow-floating-small);
+}
+
+.prHead,
+.prMeta,
+.prCheck {
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-8);
+}
+
+.prState {
+  display: inline-flex;
+  animation: wordIn 420ms cubic-bezier(0.34, 1.3, 0.64, 1) both;
+}
+
+.prMeta,
+.prCheck {
+  color: var(--fgColor-muted);
+  font-size: var(--text-body-size-small);
+}
+
+.prOk {
+  color: var(--fgColor-success);
+}
+
+.title {
+  margin: 0;
+  color: var(--fgColor-default);
+  font-size: clamp(2.1rem, 5.6vw, 3.6rem);
+  font-weight: var(--base-text-weight-semibold);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+
+.accent {
+  color: var(--fgColor-accent);
+}
+
+.word {
+  display: inline-block;
+  color: var(--fgColor-success);
+}
+
+.wordNow {
+  display: inline-block;
+  animation: wordIn 520ms cubic-bezier(0.34, 1.3, 0.64, 1) both;
+}
+
+.lead {
+  max-width: 36rem;
+  margin: 0;
+  color: var(--fgColor-muted);
+  font-size: var(--text-title-size-medium);
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--base-size-12);
+}
+
+.command {
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-8);
+  max-width: 100%;
+  padding: var(--base-size-4) var(--base-size-4) var(--base-size-4) var(--base-size-12);
+  border: var(--borderWidth-thin) solid var(--borderColor-default);
+  border-radius: var(--borderRadius-medium);
+  background: var(--bgColor-muted);
+}
+
+.command code {
+  overflow-x: auto;
+  font-family: var(--fontStack-monospace);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.prompt {
+  margin-right: 0.6em;
+  color: var(--fgColor-success);
+  user-select: none;
+}
+
+/* A field of small lights behind the hero. Each one fades in and out on its own rhythm. */
+.sky {
+  position: absolute;
+  inset: -2rem 0;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at 70% 40%, #000 20%, transparent 72%);
+}
+
+.sky i {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--fgColor-accent);
+  opacity: 0.15;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.sky i:nth-child(3n) {
+  width: 4px;
+  height: 4px;
+  background: var(--fgColor-success);
+}
+
+.sky i:nth-child(5n) {
+  background: var(--fgColor-done);
+}
+
+/* Section headings */
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-8);
+  max-width: 44rem;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--base-size-8);
+  margin: 0;
+  color: var(--fgColor-accent);
+  font-family: var(--fontStack-monospace);
+  font-size: var(--text-body-size-small);
+  font-weight: var(--base-text-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.kicker::before {
+  width: 1.5rem;
+  height: 2px;
+  background: currentColor;
+  content: '';
+}
+
+.h2 {
+  margin: 0;
+  color: var(--fgColor-default);
+  font-size: clamp(1.5rem, 3.6vw, 2.25rem);
+  font-weight: var(--base-text-weight-semibold);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.sub {
+  margin: 0;
+  color: var(--fgColor-muted);
+  font-size: var(--text-title-size-small);
+}
+
+/* Element cards */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14.5rem, 1fr));
+  gap: var(--base-size-16);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-8);
+  height: 100%;
+  padding: var(--base-size-12);
+  border: var(--borderWidth-thin) solid var(--borderColor-default);
+  border-radius: var(--borderRadius-medium);
+  background: var(--bgColor-default);
+  color: var(--fgColor-default);
+  text-decoration: none;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+}
+
+.card:hover {
+  border-color: var(--borderColor-accent-emphasis);
+  box-shadow: var(--shadow-floating-small);
+  transform: translateY(-2px);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--borderColor-accent-emphasis);
+  outline-offset: 2px;
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--base-size-8);
+  margin-top: var(--base-size-4);
+  font-weight: var(--base-text-weight-semibold);
+}
+
+.cardArrow {
+  margin-left: auto;
+  color: var(--fgColor-muted);
+  transition: transform 150ms ease;
+}
+
+.card:hover .cardArrow {
+  color: var(--fgColor-accent);
+  transform: translateX(3px);
+}
+
+.cardText {
+  color: var(--fgColor-muted);
+  font-size: var(--text-body-size-medium);
+}
+
+.duo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--base-size-16);
+  align-items: start;
+}
+
+.footer {
+  padding-top: var(--base-size-16);
+  border-top: var(--borderWidth-thin) solid var(--borderColor-muted);
+  color: var(--fgColor-muted);
+  font-size: var(--text-body-size-small);
+}
+
+@keyframes wordIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+}
+
+@keyframes twinkle {
+  50% {
+    opacity: 0.9;
+    transform: scale(1.6);
+  }
+}
+
+@media (max-width: 56rem) {
+  .hero,
+  .duo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero {
+    min-height: 0;
+  }
+
+  .page {
+    gap: 3.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wordNow,
+  .prState,
+  .sky i {
+    animation: none;
+  }
+
+  .card,
+  .cardArrow {
+    transition: none;
+  }
+}

@@ -1,0 +1,77 @@
+---
+title: Workflow run
+description: An animation of jobs and steps that run in order.
+---
+
+The `WorkflowRun` component plays back a run. Each job starts, ticks off its steps, and hands over to the next job. Use it to explain a pipeline before the learner opens the real one.
+
+<Callout title="An animation, not live data">
+  The component shows the order of events from the lists you give it. It doesn't read a real
+  workflow run.
+</Callout>
+
+## Try it
+
+This example uses the jobs and step names from the deploy workflow in this repository. Select **Re-run** to play it again.
+
+<WorkflowRun
+  title="Deploy to GitHub Pages"
+  trigger="git push origin main"
+  jobs={[
+    {
+      name: 'build',
+      steps: [
+        'Check out the repository',
+        'Set up Node.js',
+        'Read the GitHub Pages settings',
+        'Install dependencies',
+        'Build the static site',
+        'Upload the site',
+      ],
+    },
+    { name: 'deploy', steps: ['Deploy to GitHub Pages'] },
+  ]}
+  result="The site is live on GitHub Pages"
+/>
+
+## How you write it
+
+```mdx
+<WorkflowRun
+  title="Deploy to GitHub Pages"
+  trigger="git push origin main"
+  jobs={[
+    { name: 'build', steps: ['Install dependencies', 'Build the static site'] },
+    { name: 'deploy', steps: ['Deploy to GitHub Pages'] },
+  ]}
+  result="The site is live on GitHub Pages"
+/>
+```
+
+## Properties
+
+<TypeTable
+  type={{
+    trigger: {
+      description: 'The event that starts the run.',
+      type: 'string',
+      required: true,
+    },
+    jobs: {
+      description: 'The jobs, in the order they run.',
+      type: 'WorkflowJob[]',
+      typeDescription: '{ name: string; steps: string[] }[]',
+      required: true,
+    },
+    result: {
+      description: 'The line that appears when every job is done.',
+      type: 'string',
+      required: true,
+    },
+    title: {
+      description: 'The text in the title bar.',
+      type: 'string',
+      default: "'Workflow run'",
+    },
+  }}
+/>

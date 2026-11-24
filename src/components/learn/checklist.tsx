@@ -60,7 +60,11 @@ export function Checklist({ id, title = 'Track your progress', items }: Checklis
         <TasklistIcon size={16} aria-hidden />
         Progress
         <span className={styles.panelHeaderSpacer} />
-        {complete ? <Label variant="success">Complete</Label> : null}
+        {complete ? (
+          <span className={styles.pop}>
+            <Label variant="success">Complete</Label>
+          </span>
+        ) : null}
         <span>
           {done.length} of {items.length} done
         </span>

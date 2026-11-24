@@ -44,6 +44,17 @@ description: The project layout, how you add an element to a page, and how the s
         <File name="command-exercise.tsx" />
         <File name="mermaid.tsx" />
       </Folder>
+      <Folder name="motion" defaultOpen>
+        <File name="terminal.tsx" />
+        <File name="git-graph.tsx" />
+        <File name="code-tour.tsx" />
+        <File name="workflow-run.tsx" />
+        <File name="theme-playground.tsx" />
+        <File name="status-bar.tsx" />
+      </Folder>
+      <Folder name="home">
+        <File name="home.tsx" />
+      </Folder>
     </Folder>
   </Folder>
   <File name="next.config.mjs" />
@@ -51,6 +62,8 @@ description: The project layout, how you add an element to a page, and how the s
 
 - **`content/docs`** holds the pages. Each `.mdx` file is a page, and each `meta.json` file sets the order of the sidebar.
 - **`src/components/learn`** holds the learning widgets.
+- **`src/components/motion`** holds the animated elements and the hooks they share.
+- **`src/components/home`** holds the animated home page.
 - **`src/components/mdx.tsx`** lists the components that pages can use without an import.
 - **`src/app/global.css`** maps the site colors to the Primer tokens.
 

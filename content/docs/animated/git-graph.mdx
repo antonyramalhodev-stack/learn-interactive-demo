@@ -1,0 +1,74 @@
+---
+title: Commit graph
+description: A commit graph that draws itself one step at a time.
+---
+
+The `GitGraph` component turns a list of events into a commit graph. Each step draws a line and a commit, and the caption explains the step. The reader can play the steps or move through them with the arrows.
+
+## Try it
+
+<GitGraph
+  title="Feature branch flow"
+  events={[
+    { type: 'commit', branch: 'main', label: 'Start from the default branch' },
+    { type: 'branch', branch: 'feature', from: 'main', label: 'Create a branch named feature' },
+    { type: 'commit', branch: 'feature', label: 'Commit your first change' },
+    { type: 'commit', branch: 'main', label: 'Someone else commits to main' },
+    { type: 'commit', branch: 'feature', label: 'Commit a second change' },
+    { type: 'merge', branch: 'feature', into: 'main', label: 'Merge feature into main' },
+  ]}
+/>
+
+## How you write it
+
+An event is a `commit`, a `branch`, or a `merge`. The component assigns a lane and a color to each branch in the order the branches appear.
+
+```mdx
+<GitGraph
+  title="Feature branch flow"
+  events={[
+    { type: 'commit', branch: 'main', label: 'Start from the default branch' },
+    { type: 'branch', branch: 'feature', from: 'main', label: 'Create a branch named feature' },
+    { type: 'commit', branch: 'feature', label: 'Commit your first change' },
+    { type: 'merge', branch: 'feature', into: 'main', label: 'Merge feature into main' },
+  ]}
+/>
+```
+
+## Properties
+
+<TypeTable
+  type={{
+    events: {
+      description: 'The history, in order. Each event is one step.',
+      type: 'GitEvent[]',
+      typeDescription:
+        "{ type: 'commit'; branch; label } | { type: 'branch'; branch; from; label } | { type: 'merge'; branch; into; label }",
+      required: true,
+    },
+    title: {
+      description: 'The text in the title bar.',
+      type: 'string',
+      default: "'Commit graph'",
+    },
+    autoPlay: {
+      description: 'Play the steps when the graph scrolls into view.',
+      type: 'boolean',
+      default: 'true',
+    },
+    loop: {
+      description: 'Start again after the last step.',
+      type: 'boolean',
+      default: 'false',
+    },
+    compact: {
+      description: 'Hide the step buttons. Use it with autoPlay and loop for a decorative graph.',
+      type: 'boolean',
+      default: 'false',
+    },
+  }}
+/>
+
+## Motion and accessibility
+
+The graph has a text alternative that lists every step in order. With reduced motion, the graph shows the final state.

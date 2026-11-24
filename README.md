@@ -28,6 +28,21 @@ A demo of interactive learning content on GitHub Pages. The site uses [Fumadocs]
 | `LessonMeta` | Chips for time, level, and prerequisites | `src/components/learn/lesson-meta.tsx` |
 | `PrimerShowcase` | A gallery of live Primer components | `src/components/learn/primer-showcase.tsx` |
 
+**Animated elements**
+
+Each one plays when the reader scrolls to it and shows its end state when the reader's system asks for reduced motion.
+
+| Component | What it does | Source |
+| --- | --- | --- |
+| `Terminal` | A terminal session that types itself | `src/components/motion/terminal.tsx` |
+| `GitGraph` | A commit graph that draws itself one step at a time | `src/components/motion/git-graph.tsx` |
+| `CodeTour` | A highlight that walks through a code sample | `src/components/motion/code-tour.tsx` |
+| `WorkflowRun` | Jobs and steps that run in order | `src/components/motion/workflow-run.tsx` |
+| `ThemePlayground` | A live preview in seven Primer color themes | `src/components/motion/theme-playground.tsx` |
+| `LayerStack` | A stack of layers the reader can explore | `src/components/motion/layer-stack.tsx` |
+
+The home page (`src/components/home/home.tsx`) combines them with a typed MDX preview, looping mini demos, and a status bar that follows the scroll position.
+
 ## Run it on your computer
 
 You need Node.js 22 or later.

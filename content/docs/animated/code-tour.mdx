@@ -1,0 +1,87 @@
+---
+title: Code tour
+description: A guided walk through a code sample, one highlight at a time.
+---
+
+The `CodeTour` component shows a code sample and a set of steps. A highlight slides to the lines for each step, the other lines dim, and a note explains what the reader sees.
+
+## Try it
+
+<CodeTour
+  title="deploy.yml"
+  code={`on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: npm ci
+      - run: npm run build
+  deploy:
+    needs: build`}
+  steps={[
+    {
+      lines: [1, 3],
+      title: 'The trigger',
+      text: 'The workflow starts on every push to the main branch.',
+    },
+    {
+      lines: [6, 10],
+      title: 'The build job',
+      text: 'The job installs the dependencies and builds the static site.',
+    },
+    {
+      lines: [11, 12],
+      title: 'The deploy job',
+      text: 'The needs key makes the deploy job wait for the build job.',
+    },
+  ]}
+/>
+
+## How you write it
+
+```mdx
+<CodeTour
+  title="deploy.yml"
+  code={`on:
+  push:
+    branches: [main]`}
+  steps={[
+    {
+      lines: [1, 3],
+      title: 'The trigger',
+      text: 'The workflow starts on every push to the main branch.',
+    },
+  ]}
+/>
+```
+
+## Properties
+
+<TypeTable
+  type={{
+    code: {
+      description: 'The code sample.',
+      type: 'string',
+      required: true,
+    },
+    steps: {
+      description: 'The stops on the tour. Lines start at 1.',
+      type: 'CodeTourStep[]',
+      typeDescription: '{ lines: number | [number, number]; title: string; text: string }[]',
+      required: true,
+    },
+    title: {
+      description: 'The text in the title bar, for example a file name.',
+      type: 'string',
+      default: "'Code tour'",
+    },
+    autoPlay: {
+      description: 'Move through the steps on a timer until the reader takes over.',
+      type: 'boolean',
+      default: 'false',
+    },
+  }}
+/>
